@@ -1,17 +1,5 @@
-buildscript {
-    dependencies {
-        classpath("com.squareup.sqldelight:gradle-plugin:1.5.5")
-    }
-}
-
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    //trick: for the same plugin versions in all sub-modules
-    kotlin("multiplatform").apply(false)
-    id("com.android.application").apply(false)
-    id("com.android.library").apply(false)
-    id("org.jetbrains.compose").apply(false)
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    id("com.android.application") version "8.1.2" apply false
+    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
 }
