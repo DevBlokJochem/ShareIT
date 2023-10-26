@@ -46,6 +46,7 @@ fun AppDrawer(
     currentRoute: String,
     navigateToHome: () -> Unit,
     navigateToInterests: () -> Unit,
+    navigateToAccount: () -> Unit,
     closeDrawer: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -65,6 +66,13 @@ fun AppDrawer(
             icon = { Icon(Icons.Filled.ListAlt, null) },
             selected = currentRoute == JetnewsDestinations.INTERESTS_ROUTE,
             onClick = { navigateToInterests(); closeDrawer() },
+            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+        )
+        NavigationDrawerItem(
+            label = { Text(stringResource(id = R.string.account_title)) },
+            icon = { Icon(Icons.Filled.ListAlt, null) },
+            selected = currentRoute == JetnewsDestinations.ACCOUNT_ROUTE,
+            onClick = { navigateToAccount(); closeDrawer() },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
         )
     }
@@ -96,6 +104,7 @@ fun PreviewAppDrawer() {
             currentRoute = JetnewsDestinations.HOME_ROUTE,
             navigateToHome = {},
             navigateToInterests = {},
+            navigateToAccount = {},
             closeDrawer = { }
         )
     }
