@@ -59,13 +59,6 @@ class AccountViewModel(
             true
         )
 
-    val topics =
-        accountRepository.getTopicsFlow().stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000),
-            emptySet()
-        )
-
     init {
         refreshAll()
     }
