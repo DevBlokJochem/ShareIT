@@ -30,8 +30,6 @@ import com.example.jetnews.ui.account.AccountRoute
 import com.example.jetnews.ui.account.AccountViewModel
 import com.example.jetnews.ui.home.HomeRoute
 import com.example.jetnews.ui.home.HomeViewModel
-import com.example.jetnews.ui.interests.InterestsRoute
-import com.example.jetnews.ui.interests.InterestsViewModel
 
 const val POST_ID = "postId"
 
@@ -66,16 +64,6 @@ fun JetnewsNavGraph(
             )
             HomeRoute(
                 homeViewModel,
-                isExpandedScreen = isExpandedScreen,
-                openDrawer = openDrawer
-            )
-        }
-        composable(JetnewsDestinations.INTERESTS_ROUTE) {
-            val interestsViewModel: InterestsViewModel = viewModel(
-                factory = InterestsViewModel.provideFactory(appContainer.interestsRepository)
-            )
-            InterestsRoute(
-                interestsViewModel = interestsViewModel,
                 isExpandedScreen = isExpandedScreen,
                 openDrawer = openDrawer
             )

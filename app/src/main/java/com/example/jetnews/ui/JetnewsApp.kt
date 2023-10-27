@@ -69,7 +69,6 @@ fun JetnewsApp(
                 AppDrawer(
                     currentRoute = currentRoute,
                     navigateToHome = navigationActions.navigateToHome,
-                    navigateToInterests = navigationActions.navigateToInterests,
                     navigateToAccount = navigationActions.navigateToAccount,
                     closeDrawer = { coroutineScope.launch { sizeAwareDrawerState.close() } }
                 )
@@ -83,7 +82,6 @@ fun JetnewsApp(
                     AppNavRail(
                         currentRoute = currentRoute,
                         navigateToHome = navigationActions.navigateToHome,
-                        navigateToInterests = navigationActions.navigateToInterests,
                         navigateToAccount = navigationActions.navigateToAccount
                     )
                 }

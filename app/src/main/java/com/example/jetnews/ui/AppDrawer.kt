@@ -45,7 +45,6 @@ import com.example.jetnews.ui.theme.JetnewsTheme
 fun AppDrawer(
     currentRoute: String,
     navigateToHome: () -> Unit,
-    navigateToInterests: () -> Unit,
     navigateToAccount: () -> Unit,
     closeDrawer: () -> Unit,
     modifier: Modifier = Modifier
@@ -59,13 +58,6 @@ fun AppDrawer(
             icon = { Icon(Icons.Filled.Home, null) },
             selected = currentRoute == JetnewsDestinations.HOME_ROUTE,
             onClick = { navigateToHome(); closeDrawer() },
-            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-        )
-        NavigationDrawerItem(
-            label = { Text(stringResource(id = R.string.interests_title)) },
-            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == JetnewsDestinations.INTERESTS_ROUTE,
-            onClick = { navigateToInterests(); closeDrawer() },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
         )
         NavigationDrawerItem(
@@ -103,7 +95,6 @@ fun PreviewAppDrawer() {
         AppDrawer(
             currentRoute = JetnewsDestinations.HOME_ROUTE,
             navigateToHome = {},
-            navigateToInterests = {},
             navigateToAccount = {},
             closeDrawer = { }
         )

@@ -24,7 +24,6 @@ import androidx.navigation.NavHostController
  */
 object JetnewsDestinations {
     const val HOME_ROUTE = "home"
-    const val INTERESTS_ROUTE = "interests"
     const val ACCOUNT_ROUTE = "account"
 }
 
@@ -44,15 +43,6 @@ class JetnewsNavigationActions(navController: NavHostController) {
             // reselecting the same item
             launchSingleTop = true
             // Restore state when reselecting a previously selected item
-            restoreState = true
-        }
-    }
-    val navigateToInterests: () -> Unit = {
-        navController.navigate(JetnewsDestinations.INTERESTS_ROUTE) {
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
-            launchSingleTop = true
             restoreState = true
         }
     }

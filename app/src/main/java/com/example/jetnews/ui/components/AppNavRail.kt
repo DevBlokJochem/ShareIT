@@ -38,7 +38,6 @@ import com.example.jetnews.ui.JetnewsDestinations
 fun AppNavRail(
     currentRoute: String,
     navigateToHome: () -> Unit,
-    navigateToInterests: () -> Unit,
     navigateToAccount: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -59,13 +58,6 @@ fun AppNavRail(
             onClick = navigateToHome,
             icon = { Icon(Icons.Filled.Home, stringResource(R.string.home_title)) },
             label = { Text(stringResource(R.string.home_title)) },
-            alwaysShowLabel = false
-        )
-        NavigationRailItem(
-            selected = currentRoute == JetnewsDestinations.INTERESTS_ROUTE,
-            onClick = navigateToInterests,
-            icon = { Icon(Icons.Filled.ListAlt, stringResource(R.string.interests_title)) },
-            label = { Text(stringResource(R.string.interests_title)) },
             alwaysShowLabel = false
         )
         NavigationRailItem(
