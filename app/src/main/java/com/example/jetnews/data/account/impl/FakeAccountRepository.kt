@@ -25,7 +25,10 @@ class FakeAccountRepository: AccountRepository {
 
     override suspend fun toggleDarkMode() = darkMode.update { !it }
     override suspend fun toggleMeldingen() = meldingen.update { !it }
-    override suspend fun setUsername(newName: String) = username.update { newName }
+    override suspend fun setUsername(newName: String) {
+        // TODO(aanpassen)
+        username.update { newName }
+    }
 
     override fun observerDarkMode(): Flow<Boolean> = darkMode
     override fun observerMeldingen(): Flow<Boolean> = meldingen
