@@ -185,29 +185,12 @@ class HomeViewModel(
     }
 
     /**
-     * Selects the given article to view more information about it.
-     */
-    fun selectArticle(postId: String) {
-        // Treat selecting a detail as simply interacting with it
-        interactedWithArticleDetails(postId)
-    }
-
-    /**
      * Notify that an error was displayed on the screen
      */
     fun errorShown(errorId: Long) {
         viewModelState.update { currentUiState ->
             val errorMessages = currentUiState.errorMessages.filterNot { it.id == errorId }
             currentUiState.copy(errorMessages = errorMessages)
-        }
-    }
-
-    /**
-     * Notify that the user interacted with the feed
-     */
-    fun interactedWithFeed() {
-        viewModelState.update {
-            it.copy(isArticleOpen = false)
         }
     }
 
@@ -220,15 +203,6 @@ class HomeViewModel(
                 selectedPostId = postId,
                 isArticleOpen = true
             )
-        }
-    }
-
-    /**
-     * Notify that the user updated the search query
-     */
-    fun onSearchInputChanged(searchInput: String) {
-        viewModelState.update {
-            it.copy(searchInput = searchInput)
         }
     }
 

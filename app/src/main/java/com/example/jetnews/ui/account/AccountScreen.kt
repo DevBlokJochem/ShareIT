@@ -70,7 +70,6 @@ fun AccountScreen(
     snackbarHostState: SnackbarHostState,
     accountViewModel: AccountViewModel
 ) {
-    val context = LocalContext.current
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         topBar = {
@@ -134,18 +133,16 @@ private fun AccountScreenContent(
         Text("Meldingen are enabled: $meldingen", Modifier.clickable {
             accountViewModel.toggleMeldingen()
         })
+
         Spacer(modifier = Modifier.height(50.dp))
         Text("Gebruikersnaam: $gebruikersNaam")
-
-        TextFieldWithHideKeyboardOnImeAction(accountViewModel) {
+        TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam") {
             accountViewModel.setUsername(it)
         }
 
-
         Spacer(modifier = Modifier.height(50.dp))
         Text("Email: $email")
-
-        TextFieldWithHideKeyboardOnImeAction(accountViewModel) {
+        TextFieldWithHideKeyboardOnImeAction("Verander email") {
             accountViewModel.setEmail(it)
         }
 
@@ -154,13 +151,13 @@ private fun AccountScreenContent(
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun TextFieldWithHideKeyboardOnImeAction(accountViewModel: AccountViewModel, callback: (action: String) -> Unit) {
+fun TextFieldWithHideKeyboardOnImeAction(label: String, callback: (action: String) -> Unit) {
     val keyboardController = LocalSoftwareKeyboardController.current
     var text by rememberSaveable { mutableStateOf("") }
     TextField(
         value = text,
         onValueChange = { text = it },
-        label = { Text("verander gebruikersnaam") },
+        label = { Text(label) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(

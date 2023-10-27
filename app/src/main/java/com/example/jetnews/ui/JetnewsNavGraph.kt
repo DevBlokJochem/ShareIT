@@ -65,9 +65,9 @@ fun JetnewsNavGraph(
                 )
             )
             HomeRoute(
-                homeViewModel = homeViewModel,
+                homeViewModel,
                 isExpandedScreen = isExpandedScreen,
-                openDrawer = openDrawer,
+                openDrawer = openDrawer
             )
         }
         composable(JetnewsDestinations.INTERESTS_ROUTE) {

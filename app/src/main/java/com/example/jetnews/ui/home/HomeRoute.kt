@@ -22,9 +22,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.jetnews.ui.home.HomeScreenType.ArticleDetails
-import com.example.jetnews.ui.home.HomeScreenType.Feed
-import com.example.jetnews.ui.home.HomeScreenType.FeedWithArticleDetails
 
 /**
  * Displays the Home route.
@@ -53,6 +50,7 @@ fun HomeRoute(
         onErrorDismiss = { homeViewModel.errorShown(it) },
         openDrawer = openDrawer,
         snackbarHostState = snackbarHostState,
+        homeViewModel
     )
 }
 
@@ -80,52 +78,16 @@ fun HomeRoute(
     onRefreshPosts: () -> Unit,
     onErrorDismiss: (Long) -> Unit,
     openDrawer: () -> Unit,
-    snackbarHostState: SnackbarHostState
+    snackbarHostState: SnackbarHostState,
+    viewModel: HomeViewModel
 ) {
-    HomeFeedWithArticleDetailsScreen(
+    HomeScreen(
         uiState = uiState,
         showTopAppBar = !isExpandedScreen,
         onRefreshPosts = onRefreshPosts,
         onErrorDismiss = onErrorDismiss,
         openDrawer = openDrawer,
-        snackbarHostState = snackbarHostState
+        snackbarHostState = snackbarHostState,
+        viewModel = viewModel
     )
-}
-
-/**
- * A precise enumeration of which type of screen to display at the home route.
- *
- * There are 3 options:
- * - [FeedWithArticleDetails], which displays both a list of all articles and a specific article.
- * - [Feed], which displays just the list of all articles
- * - [ArticleDetails], which displays just a specific article.
- */
-private enum class HomeScreenType {
-    FeedWithArticleDetails,
-    Feed,
-    ArticleDetails
-}
-
-/**
- * Returns the current [HomeScreenType] to display, based on whether or not the screen is expanded
- * and the [HomeUiState].
- */
-@Composable
-private fun getHomeScreenType(
-    isExpandedScreen: Boolean,
-    uiState: HomeUiState
-): HomeScreenType = when (isExpandedScreen) {
-    false -> {
-        when (uiState) {
-            is HomeUiState.HasPosts -> {
-                if (uiState.isArticleOpen) {
-                    HomeScreenType.ArticleDetails
-                } else {
-                    HomeScreenType.Feed
-                }
-            }
-            is HomeUiState.NoPosts -> HomeScreenType.Feed
-        }
-    }
-    true -> HomeScreenType.FeedWithArticleDetails
 }

@@ -16,7 +16,6 @@
 
 package com.example.jetnews.ui.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -31,17 +30,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetnews.R
 import com.example.jetnews.ui.JetnewsDestinations
-import com.example.jetnews.ui.theme.JetnewsTheme
 
 @Composable
 fun AppNavRail(
     currentRoute: String,
     navigateToHome: () -> Unit,
     navigateToInterests: () -> Unit,
+    navigateToAccount: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     NavigationRail(
@@ -70,19 +68,13 @@ fun AppNavRail(
             label = { Text(stringResource(R.string.interests_title)) },
             alwaysShowLabel = false
         )
-        Spacer(Modifier.weight(1f))
-    }
-}
-
-@Preview("Drawer contents")
-@Preview("Drawer contents (dark)", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun PreviewAppNavRail() {
-    JetnewsTheme {
-        AppNavRail(
-            currentRoute = JetnewsDestinations.HOME_ROUTE,
-            navigateToHome = {},
-            navigateToInterests = {},
+        NavigationRailItem(
+            selected = currentRoute == JetnewsDestinations.ACCOUNT_ROUTE,
+            onClick = navigateToAccount,
+            icon = { Icon(Icons.Filled.ListAlt, stringResource(R.string.account_title)) },
+            label = { Text(stringResource(R.string.account_title)) },
+            alwaysShowLabel = false
         )
+        Spacer(Modifier.weight(1f))
     }
 }
