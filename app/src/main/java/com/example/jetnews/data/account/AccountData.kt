@@ -4,5 +4,4 @@ object AccountData {
     var gebruikersnaam = ""
     var wachtwoord = ""
     var email = ""
-
 }

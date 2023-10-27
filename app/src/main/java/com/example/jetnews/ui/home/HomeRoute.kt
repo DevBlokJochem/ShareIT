@@ -16,16 +16,12 @@
 
 package com.example.jetnews.ui.home
 
-import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.jetnews.ui.article.ArticleScreen
 import com.example.jetnews.ui.home.HomeScreenType.ArticleDetails
 import com.example.jetnews.ui.home.HomeScreenType.Feed
 import com.example.jetnews.ui.home.HomeScreenType.FeedWithArticleDetails
@@ -53,13 +49,8 @@ fun HomeRoute(
     HomeRoute(
         uiState = uiState,
         isExpandedScreen = isExpandedScreen,
-        onToggleFavorite = { homeViewModel.toggleFavourite(it) },
-        onSelectPost = { homeViewModel.selectArticle(it) },
         onRefreshPosts = { homeViewModel.refreshPosts() },
         onErrorDismiss = { homeViewModel.errorShown(it) },
-        onInteractWithFeed = { homeViewModel.interactedWithFeed() },
-        onInteractWithArticleDetails = { homeViewModel.interactedWithArticleDetails(it) },
-        onSearchInputChanged = { homeViewModel.onSearchInputChanged(it) },
         openDrawer = openDrawer,
         snackbarHostState = snackbarHostState,
     )
@@ -86,87 +77,19 @@ fun HomeRoute(
 fun HomeRoute(
     uiState: HomeUiState,
     isExpandedScreen: Boolean,
-    onToggleFavorite: (String) -> Unit,
-    onSelectPost: (String) -> Unit,
     onRefreshPosts: () -> Unit,
     onErrorDismiss: (Long) -> Unit,
-    onInteractWithFeed: () -> Unit,
-    onInteractWithArticleDetails: (String) -> Unit,
-    onSearchInputChanged: (String) -> Unit,
     openDrawer: () -> Unit,
     snackbarHostState: SnackbarHostState
 ) {
-    // Construct the lazy list states for the list and the details outside of deciding which one to
-    // show. This allows the associated state to survive beyond that decision, and therefore
-    // we get to preserve the scroll throughout any changes to the content.
-    val homeListLazyListState = rememberLazyListState()
-    val articleDetailLazyListStates = when (uiState) {
-        is HomeUiState.HasPosts -> uiState.postsFeed.allPosts
-        is HomeUiState.NoPosts -> emptyList()
-    }.associate { post ->
-        key(post.id) {
-            post.id to rememberLazyListState()
-        }
-    }
-
-    val homeScreenType = getHomeScreenType(isExpandedScreen, uiState)
-    when (homeScreenType) {
-        HomeScreenType.FeedWithArticleDetails -> {
-            HomeFeedWithArticleDetailsScreen(
-                uiState = uiState,
-                showTopAppBar = !isExpandedScreen,
-                onToggleFavorite = onToggleFavorite,
-                onSelectPost = onSelectPost,
-                onRefreshPosts = onRefreshPosts,
-                onErrorDismiss = onErrorDismiss,
-                onInteractWithList = onInteractWithFeed,
-                onInteractWithDetail = onInteractWithArticleDetails,
-                openDrawer = openDrawer,
-                homeListLazyListState = homeListLazyListState,
-                articleDetailLazyListStates = articleDetailLazyListStates,
-                snackbarHostState = snackbarHostState,
-                onSearchInputChanged = onSearchInputChanged,
-            )
-        }
-        HomeScreenType.Feed -> {
-            HomeFeedScreen(
-                uiState = uiState,
-                showTopAppBar = !isExpandedScreen,
-                onToggleFavorite = onToggleFavorite,
-                onSelectPost = onSelectPost,
-                onRefreshPosts = onRefreshPosts,
-                onErrorDismiss = onErrorDismiss,
-                openDrawer = openDrawer,
-                homeListLazyListState = homeListLazyListState,
-                snackbarHostState = snackbarHostState,
-                onSearchInputChanged = onSearchInputChanged,
-            )
-        }
-        HomeScreenType.ArticleDetails -> {
-            // Guaranteed by above condition for home screen type
-            check(uiState is HomeUiState.HasPosts)
-
-            ArticleScreen(
-                post = uiState.selectedPost,
-                isExpandedScreen = isExpandedScreen,
-                onBack = onInteractWithFeed,
-                isFavorite = uiState.favorites.contains(uiState.selectedPost.id),
-                onToggleFavorite = {
-                    onToggleFavorite(uiState.selectedPost.id)
-                },
-                lazyListState = articleDetailLazyListStates.getValue(
-                    uiState.selectedPost.id
-                )
-            )
-
-            // If we are just showing the detail, have a back press switch to the list.
-            // This doesn't take anything more than notifying that we "interacted with the list"
-            // since that is what drives the display of the feed
-            BackHandler {
-                onInteractWithFeed()
-            }
-        }
-    }
+    HomeFeedWithArticleDetailsScreen(
+        uiState = uiState,
+        showTopAppBar = !isExpandedScreen,
+        onRefreshPosts = onRefreshPosts,
+        onErrorDismiss = onErrorDismiss,
+        openDrawer = openDrawer,
+        snackbarHostState = snackbarHostState
+    )
 }
 
 /**
