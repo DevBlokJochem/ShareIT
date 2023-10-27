@@ -149,6 +149,7 @@ fun TextFieldWithHideKeyboardOnImeAction(accountViewModel: AccountViewModel, cal
         value = text,
         onValueChange = { text = it },
         label = { Text("Label") },
+        singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(
             onDone = {
