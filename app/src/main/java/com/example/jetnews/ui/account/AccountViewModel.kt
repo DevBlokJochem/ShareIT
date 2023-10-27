@@ -95,6 +95,12 @@ class AccountViewModel(
         }
     }
 
+    fun setEmail(newName: String) {
+        viewModelScope.launch {
+            accountRepository.setEmail(newName)
+        }
+    }
+
     /**
      * Refresh topics, people, and publications
      */

@@ -137,13 +137,17 @@ private fun AccountScreenContent(
         Spacer(modifier = Modifier.height(50.dp))
         Text("Gebruikersnaam: $gebruikersNaam")
 
-        TextFieldWithHideKeyboardOnImeAction(accountViewModel)
+        TextFieldWithHideKeyboardOnImeAction(accountViewModel) {
+            accountViewModel.setUsername(it)
+        }
 
 
         Spacer(modifier = Modifier.height(50.dp))
         Text("Email: $email")
 
-        TextFieldWithHideKeyboardOnImeAction(accountViewModel)
+        TextFieldWithHideKeyboardOnImeAction(accountViewModel) {
+            accountViewModel.setEmail(it)
+        }
 
     }
 }
