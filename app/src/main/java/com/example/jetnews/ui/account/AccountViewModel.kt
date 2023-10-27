@@ -65,6 +65,13 @@ class AccountViewModel(
             SharingStarted.WhileSubscribed(5000),
             true
         )
+    val email =
+        accountRepository.observerEmail().stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            true
+        )
+
 
     init {
         refreshAll()

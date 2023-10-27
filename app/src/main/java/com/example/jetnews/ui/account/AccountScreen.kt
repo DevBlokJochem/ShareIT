@@ -121,6 +121,7 @@ private fun AccountScreenContent(
     val darkMode by accountViewModel.darkMode.collectAsStateWithLifecycle()
     val meldingen by accountViewModel.meldingen.collectAsStateWithLifecycle()
     val gebruikersNaam by accountViewModel.username.collectAsStateWithLifecycle()
+    val email by accountViewModel.email.collectAsStateWithLifecycle()
 
     Column(modifier) {
         Divider(
@@ -137,6 +138,13 @@ private fun AccountScreenContent(
         Text("Gebruikersnaam: $gebruikersNaam")
 
         TextFieldWithHideKeyboardOnImeAction(accountViewModel)
+
+
+        Spacer(modifier = Modifier.height(50.dp))
+        Text("Email: $email")
+
+        TextFieldWithHideKeyboardOnImeAction(accountViewModel)
+
     }
 }
 
@@ -148,7 +156,7 @@ fun TextFieldWithHideKeyboardOnImeAction(accountViewModel: AccountViewModel, cal
     TextField(
         value = text,
         onValueChange = { text = it },
-        label = { Text("Label") },
+        label = { Text("verander gebruikersnaam") },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(
@@ -159,3 +167,4 @@ fun TextFieldWithHideKeyboardOnImeAction(accountViewModel: AccountViewModel, cal
         )
     )
 }
+

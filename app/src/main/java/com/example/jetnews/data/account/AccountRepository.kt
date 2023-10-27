@@ -29,6 +29,8 @@ interface AccountRepository {
     fun observerMeldingen(): Flow<Boolean>
     fun observerDarkMode(): Flow<Boolean>
     fun observerUsername(): Flow<String>
+
+    fun observerEmail(): Flow<String>
     fun getTopicsFlow(): Flow<Set<String>>
 }
 
