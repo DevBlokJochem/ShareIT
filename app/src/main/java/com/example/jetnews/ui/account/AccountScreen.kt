@@ -142,7 +142,7 @@ private fun AccountScreenContent(
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun TextFieldWithHideKeyboardOnImeAction(accountViewModel: AccountViewModel) {
+fun TextFieldWithHideKeyboardOnImeAction(accountViewModel: AccountViewModel, callback: (action: String) -> Unit) {
     val keyboardController = LocalSoftwareKeyboardController.current
     var text by rememberSaveable { mutableStateOf("") }
     TextField(
@@ -153,7 +153,7 @@ fun TextFieldWithHideKeyboardOnImeAction(accountViewModel: AccountViewModel) {
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()
-                accountViewModel.setUsername(text)
+                callback.invoke(text)
             }
         )
     )
