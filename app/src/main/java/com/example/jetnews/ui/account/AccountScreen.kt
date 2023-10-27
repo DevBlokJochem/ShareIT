@@ -150,14 +150,9 @@ private fun AccountScreenContent(
         Spacer(modifier = Modifier.height(50.dp))
         Text("Wachtwoord: ${"*".repeat(wachtwoord.toString().length)}")
 
-        TextFieldWithHideKeyboardOnImeAction(accountViewModel) {
+        TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord") {
             accountViewModel.setWachtwoord(it)
         }
-
-
-
-
-
 
     }
 }
