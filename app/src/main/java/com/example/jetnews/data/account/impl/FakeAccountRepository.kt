@@ -21,6 +21,7 @@ class FakeAccountRepository: AccountRepository {
     private val meldingen = MutableStateFlow(defaultMeldingen)
     private val username = MutableStateFlow("gebruiker")
     private val email = MutableStateFlow("email")
+    private val wachtwoord = MutableStateFlow("wachtwoord")
 
     override suspend fun getTopics(): Result<List<String>> = Result.Success(topics)
     override fun getTopicsFlow(): Flow<Set<String>> = MutableStateFlow(listOf("darkmode" to darkMode, "meldingen" to meldingen).filter { it.second.value }.map { it.first}.toSet() )
@@ -37,9 +38,16 @@ class FakeAccountRepository: AccountRepository {
         email.update { newEmail }
     }
 
+    override suspend fun setWachtwoord(newWachtwoord: String) {
+        AccountData.wachtwoord = newWachtwoord
+        wachtwoord.update { newWachtwoord }
+    }
+
     override fun observerDarkMode(): Flow<Boolean> = darkMode
     override fun observerMeldingen(): Flow<Boolean> = meldingen
     override fun observerUsername(): Flow<String> = username
     override fun observerEmail(): Flow<String> = email
+
+    override fun observerWachtwoord(): Flow<String> = wachtwoord
 
 }

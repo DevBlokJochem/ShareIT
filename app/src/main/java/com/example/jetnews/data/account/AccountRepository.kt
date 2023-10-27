@@ -28,10 +28,13 @@ interface AccountRepository {
 
     suspend fun setEmail(newEmail: String)
 
+    suspend fun setWachtwoord(newWachtwoord: String)
+
     fun observerMeldingen(): Flow<Boolean>
     fun observerDarkMode(): Flow<Boolean>
     fun observerUsername(): Flow<String>
     fun observerEmail(): Flow<String>
+    fun observerWachtwoord(): Flow<String>
     fun getTopicsFlow(): Flow<Set<String>>
 }
 

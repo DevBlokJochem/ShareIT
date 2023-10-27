@@ -71,6 +71,12 @@ class AccountViewModel(
             SharingStarted.WhileSubscribed(5000),
             true
         )
+    val wachtwoord =
+        accountRepository.observerWachtwoord().stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            true
+        )
 
 
     init {
@@ -98,6 +104,12 @@ class AccountViewModel(
     fun setEmail(newEmail: String) {
         viewModelScope.launch {
             accountRepository.setEmail(newEmail)
+        }
+    }
+
+    fun setWachtwoord(newWachtwoord: String) {
+        viewModelScope.launch {
+            accountRepository.setWachtwoord(newWachtwoord)
         }
     }
 
