@@ -130,6 +130,7 @@ private fun AccountScreenContent(
 ) {
     val darkMode by accountViewModel.darkMode.collectAsStateWithLifecycle()
     val meldingen by accountViewModel.meldingen.collectAsStateWithLifecycle()
+    val gebruikersNaam by accountViewModel.username.collectAsStateWithLifecycle()
 
     Column(modifier) {
         Divider(
@@ -140,6 +141,10 @@ private fun AccountScreenContent(
         })
         Spacer(modifier = Modifier.height(50.dp))
         Text("Meldingen are enabled: $meldingen", Modifier.clickable {
+            accountViewModel.toggleMeldingen()
+        })
+        Spacer(modifier = Modifier.height(50.dp))
+        Text("Gebruikersnaam: $gebruikersNaam", Modifier.clickable {
             accountViewModel.toggleMeldingen()
         })
     }

@@ -59,6 +59,13 @@ class AccountViewModel(
             true
         )
 
+    val username =
+        accountRepository.observerUsername().stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            true
+        )
+
     init {
         refreshAll()
     }
@@ -72,6 +79,12 @@ class AccountViewModel(
     fun toggleMeldingen() {
         viewModelScope.launch {
             accountRepository.toggleMeldingen()
+        }
+    }
+
+    fun setUsername(newName: String) {
+        viewModelScope.launch {
+            accountRepository.setUsername(newName)
         }
     }
 

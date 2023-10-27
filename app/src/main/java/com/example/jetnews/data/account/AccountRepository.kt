@@ -24,9 +24,11 @@ interface AccountRepository {
 
     suspend fun toggleDarkMode()
     suspend fun toggleMeldingen()
+    suspend fun setUsername(newName: String)
 
     fun observerMeldingen(): Flow<Boolean>
     fun observerDarkMode(): Flow<Boolean>
+    fun observerUsername(): Flow<String>
     fun getTopicsFlow(): Flow<Set<String>>
 }
 
