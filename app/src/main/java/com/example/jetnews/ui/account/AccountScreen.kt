@@ -87,22 +87,6 @@ fun AccountScreen(
                             )
                         }
                     }
-                },
-                actions = {
-                    IconButton(
-                        onClick = {
-                            Toast.makeText(
-                                context,
-                                "Search is not yet implemented in this configuration",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Search,
-                            contentDescription = stringResource(R.string.cd_search)
-                        )
-                    }
                 }
             )
         }
