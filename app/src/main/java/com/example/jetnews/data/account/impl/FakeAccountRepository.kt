@@ -1,6 +1,7 @@
 package com.example.jetnews.data.account.impl
 
 import com.example.jetnews.data.Result
+import com.example.jetnews.data.account.AccountData
 import com.example.jetnews.data.account.AccountRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +27,7 @@ class FakeAccountRepository: AccountRepository {
     override suspend fun toggleDarkMode() = darkMode.update { !it }
     override suspend fun toggleMeldingen() = meldingen.update { !it }
     override suspend fun setUsername(newName: String) {
-        // TODO(aanpassen)
+        AccountData.gebruikersnaam = newName
         username.update { newName }
     }
 
