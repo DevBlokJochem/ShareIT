@@ -95,9 +95,9 @@ class AccountViewModel(
         }
     }
 
-    fun setEmail(newName: String) {
+    fun setEmail(newEmail: String) {
         viewModelScope.launch {
-            accountRepository.setEmail(newName)
+            accountRepository.setEmail(newEmail)
         }
     }
 

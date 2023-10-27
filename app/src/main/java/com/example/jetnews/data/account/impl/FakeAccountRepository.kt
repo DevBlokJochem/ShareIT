@@ -32,8 +32,9 @@ class FakeAccountRepository: AccountRepository {
         username.update { newName }
     }
 
-    override suspend fun setEmail(newName: String) {
-
+    override suspend fun setEmail(newEmail: String) {
+        AccountData.email = newEmail
+        email.update { newEmail }
     }
 
     override fun observerDarkMode(): Flow<Boolean> = darkMode
