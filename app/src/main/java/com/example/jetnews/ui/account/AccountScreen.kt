@@ -121,6 +121,7 @@ private fun AccountScreenContent(
     val meldingen by accountViewModel.meldingen.collectAsStateWithLifecycle()
     val gebruikersNaam by accountViewModel.username.collectAsStateWithLifecycle()
     val email by accountViewModel.email.collectAsStateWithLifecycle()
+    val wachtwoord by accountViewModel.wachtwoord.collectAsStateWithLifecycle()
 
     Column(modifier) {
         Divider(
@@ -146,6 +147,18 @@ private fun AccountScreenContent(
             accountViewModel.setEmail(it)
         }
 
+        Spacer(modifier = Modifier.height(50.dp))
+        Text("Wachtwoord: ${"*".repeat(wachtwoord.toString().length)}")
+
+        TextFieldWithHideKeyboardOnImeAction(accountViewModel) {
+            accountViewModel.setWachtwoord(it)
+        }
+
+
+
+
+
+
     }
 }
 
@@ -157,7 +170,7 @@ fun TextFieldWithHideKeyboardOnImeAction(label: String, callback: (action: Strin
     TextField(
         value = text,
         onValueChange = { text = it },
-        label = { Text(label) },
+        label = { Text("Verander") },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(
