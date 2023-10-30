@@ -102,8 +102,14 @@ class AccountViewModel(
     }
 
     fun setEmail(newEmail: String) {
-        viewModelScope.launch {
-            accountRepository.setEmail(newEmail)
+        if ('.' in newEmail && '@' in newEmail) {
+            viewModelScope.launch {
+                accountRepository.setEmail(newEmail)
+            }
+        } else {
+            // Handle the case where the email is invalid (missing . or @)
+            // You could show an error message or take appropriate action.
+            println("Invalid email format. Please include both '.' and '@'.")
         }
     }
 
