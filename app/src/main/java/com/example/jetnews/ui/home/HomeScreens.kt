@@ -50,6 +50,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.jetnews.R
 import com.example.jetnews.data.account.AccountData
+import com.example.jetnews.data.product.ProductData
 import com.example.jetnews.ui.components.JetnewsSnackbarHost
 
 /**
@@ -143,6 +144,9 @@ private fun HomeScreenContent(
             style = MaterialTheme.typography.labelLarge, // Stijl naar wens aanpassen
             modifier = Modifier.padding(16.dp)
         )
+        ProductData.products.forEach {
+            Text(it.name)
+        }
     }
 }
 

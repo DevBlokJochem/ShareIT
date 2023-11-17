@@ -4,7 +4,7 @@ import java.util.UUID
 
 object ProductData {
 
-    val products: ArrayList<Product> = arrayListOf(Product(UUID.randomUUID(), "test1", null, "", " ", 50.0, "ema lkml"))
+    val products: ArrayList<Product> = arrayListOf(Product(UUID.randomUUID(), "test1", null, "", " ", 50.0, "ema lkml"), Product(UUID.randomUUID(), "test2", null, "", " ", 50.0, "ema lkml"), )
 
 }
 
