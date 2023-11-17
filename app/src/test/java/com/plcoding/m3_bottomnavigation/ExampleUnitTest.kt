@@ -1,4 +1,4 @@
-package com.example.myapplication2
+package com.plcoding.m3_bottomnavigation
 
 import org.junit.Test
 
