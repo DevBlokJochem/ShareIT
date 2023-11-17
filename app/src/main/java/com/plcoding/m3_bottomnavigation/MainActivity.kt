@@ -1,13 +1,16 @@
 package com.plcoding.m3_bottomnavigation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Settings
@@ -41,6 +44,7 @@ data class BottomNavigationItem(
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -53,17 +57,17 @@ class MainActivity : ComponentActivity() {
                         hasNews = false,
                     ),
                     BottomNavigationItem(
-                        title = "Chat",
-                        selectedIcon = Icons.Filled.Email,
-                        unselectedIcon = Icons.Outlined.Email,
+                        title = "Toevoegen",
+                        selectedIcon = Icons.Filled.Add,
+                        unselectedIcon = Icons.Outlined.Add,
                         hasNews = false,
-                        badgeCount = 45
+
                     ),
                     BottomNavigationItem(
                         title = "Settings",
                         selectedIcon = Icons.Filled.Settings,
                         unselectedIcon = Icons.Outlined.Settings,
-                        hasNews = true,
+                        hasNews = false,
                     ),
                 )
                 var selectedItemIndex by rememberSaveable {
