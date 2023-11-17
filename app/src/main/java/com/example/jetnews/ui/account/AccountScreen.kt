@@ -41,7 +41,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -49,6 +49,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.jetnews.R
+import androidx.compose.material3.Switch
+import androidx.compose.foundation.layout.Row
+
+
 
 /**
  * Stateless interest screen displays the tabs specified in [tabContent] adapting the UI to
@@ -127,13 +131,36 @@ private fun AccountScreenContent(
         Divider(
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)
         )
-        Text("Dark Mode is enabled: $darkMode", Modifier.clickable {
-            accountViewModel.toggleDarkMode()
-        })
-        Spacer(modifier = Modifier.height(50.dp))
-        Text("Meldingen are enabled: $meldingen", Modifier.clickable {
-            accountViewModel.toggleMeldingen()
-        })
+        Row(
+            modifier = Modifier
+                .clickable {
+                    accountViewModel.toggleDarkMode()
+                }
+                .padding(16.dp)
+        ) {
+            Text("Dark Mode ${accountViewModel.darkMode.value} ", Modifier.weight(1f))
+            Switch(checked = darkMode, onCheckedChange = {
+                accountViewModel.toggleDarkMode()
+            })
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Row(
+            modifier = Modifier
+                .clickable {
+                    accountViewModel.toggleMeldingen()
+                }
+                .padding(16.dp)
+        ) {
+            Text("Meldingen ${accountViewModel.meldingen.value} ", Modifier.weight(1f))
+            Switch(checked = meldingen, onCheckedChange = {
+                accountViewModel.toggleMeldingen()
+            })
+        }
+
+
+
+
+
 
         Spacer(modifier = Modifier.height(50.dp))
         Text("Gebruikersnaam: $gebruikersNaam")
