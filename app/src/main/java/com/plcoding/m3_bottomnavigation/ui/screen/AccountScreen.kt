@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -75,7 +76,6 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
 
             Spacer(modifier = Modifier.height(50.dp))
             Text("Wachtwoord: ${"*".repeat(defaultViewModel.passwordData.toString().length)}")
-
             TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord") {
                 defaultViewModel.setPassword(it)
             }

@@ -76,5 +76,4 @@ fun LoadBottomNavigationTheme(navController: NavController, selectedScreen: Scre
             )
         }
     }
-
 }

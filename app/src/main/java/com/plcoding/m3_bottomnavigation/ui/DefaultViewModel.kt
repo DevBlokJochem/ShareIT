@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import com.plcoding.m3_bottomnavigation.data.Product
+import java.util.UUID
 
 class DefaultViewModel: ViewModel() {
 
@@ -15,15 +16,22 @@ class DefaultViewModel: ViewModel() {
     var emailData by mutableStateOf("newemail@gmail.com")
     var passwordData by mutableStateOf("secret123")
     val items by mutableStateOf(arrayListOf(
-        Product(name = "name 1",
+        Product(id = UUID.randomUUID(),
+            name = "name 1",
             description = "description 1 \n line 2",
             photo = null),
-        Product(name = "name 2",
+        Product(id = UUID.randomUUID(),
+            name = "name 2",
             description = "description 2 \n line 2",
             photo = null),
-        Product(name = "name 3",
+        Product(id = UUID.randomUUID(),
+            name = "name 3",
             description = "description 3 \n line 2",
             photo = null)))
+    var newID: UUID? by mutableStateOf(null)
+    var newName: String? by mutableStateOf(null)
+    var newDescription: String? by mutableStateOf(null)
+    var newPhoto: String? by mutableStateOf(null)
 
     fun toggleBackgroundColor() {
         backgroundColor = !backgroundColor
@@ -42,9 +50,9 @@ class DefaultViewModel: ViewModel() {
         passwordData = newPassword
     }
 
-    fun updateItem(product: Product) {
-        items.removeIf { prod -> prod.id == product.id }
-        items.add(product)
+    fun updateItem() {
+        items.removeIf { prod -> prod.id == newID }
+        items.add(Product(newID ?: UUID.randomUUID(), newName ?: "no name", newDescription ?: "no description", newPhoto))
     }
 
     fun getBackgroundColor(): Color {

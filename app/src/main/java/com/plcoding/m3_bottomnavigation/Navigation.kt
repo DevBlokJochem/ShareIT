@@ -1,7 +1,9 @@
 package com.plcoding.m3_bottomnavigation
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -13,12 +15,14 @@ import com.plcoding.m3_bottomnavigation.ui.screen.UploadScreen
 @Composable
 fun Navigation(defaultViewModel: DefaultViewModel) {
     val navController = rememberNavController()
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
     NavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
         composable(route = Screen.HomeScreen.route) {
             HomeScreen(navController, defaultViewModel)
         }
         composable(route = Screen.UploadScreen.route) {
-            UploadScreen(navController, defaultViewModel)
+            UploadScreen(navController, defaultViewModel, scope, snackbarHostState)
         }
         composable(route = Screen.AccountScreen.route) {
             AccountScreen(navController, defaultViewModel)
