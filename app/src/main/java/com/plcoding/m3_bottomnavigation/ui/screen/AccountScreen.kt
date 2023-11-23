@@ -62,19 +62,19 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
             }
 
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Gebruikersnaam: ${defaultViewModel.usernameData}")
+            Text("Gebruikersnaam: ${defaultViewModel.usernameData ?: "Vul een gebruikersnaam in"}")
             TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam") {
                 defaultViewModel.setUsername(it)
             }
 
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Email: ${defaultViewModel.emailData}")
+            Text("Email: ${defaultViewModel.emailData ?: "Vul een email in"}")
             TextFieldWithHideKeyboardOnImeAction("Verander email") {
                 defaultViewModel.setEmail(it)
             }
 
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Wachtwoord: ${"*".repeat(defaultViewModel.passwordData.toString().length)}")
+            Text("Wachtwoord: ${"*".repeat((defaultViewModel.passwordData ?: "").toString().length)}")
             TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord") {
                 defaultViewModel.setPassword(it)
             }

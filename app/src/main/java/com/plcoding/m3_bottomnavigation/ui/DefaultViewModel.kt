@@ -14,9 +14,9 @@ class DefaultViewModel: ViewModel() {
 
     var backgroundColor by mutableStateOf(false)
     var notifications by mutableStateOf(false)
-    var usernameData by mutableStateOf("NewUser")
-    var emailData by mutableStateOf("newemail@gmail.com")
-    var passwordData by mutableStateOf("secret123")
+    var usernameData: String? by mutableStateOf(null)
+    var emailData: String? by mutableStateOf(null)
+    var passwordData: String? by mutableStateOf(null)
     val items by mutableStateOf(arrayListOf(
         Product(id = UUID.randomUUID(),
             name = "name 1",

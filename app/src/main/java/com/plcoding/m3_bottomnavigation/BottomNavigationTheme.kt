@@ -18,13 +18,14 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
 
-val HOMETITLE = "Home"
-val UPLOADTITLE = "Toevoegen"
-val ACCOUNTTITLE = "Account"
+const val LOADINGTITLE = "Loading"
+const val REGISTERTITLE = "Register"
+const val HOMETITLE = "Home"
+const val UPLOADTITLE = "Toevoegen"
+const val ACCOUNTTITLE = "Account"
 
 val NAVIGATIONITEMS = listOf(
     BottomNavigationItem(
