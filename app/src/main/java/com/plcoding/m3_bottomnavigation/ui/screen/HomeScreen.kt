@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -33,11 +35,11 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
         bottomBar = { LoadBottomNavigationTheme(navController, Screen.HomeScreen) }
     ) { _ ->
         Column(modifier = Modifier.BackgroundColor(defaultViewModel)) {
-            Text("header")
-            LazyColumn {
+            Text("Jouw feed") // Updated text to "jouw feed"
+            LazyRow { // Changed LazyColumn to LazyRow
                 items(defaultViewModel.items) {
                     Box(modifier = Modifier
-                        .fillMaxWidth(0.5f)
+                        .width(200.dp) // Set a specific width for each item
                         .padding(16.dp)) {
                         ImageCard(bitmap = it.photo, title = it.name)
                     }

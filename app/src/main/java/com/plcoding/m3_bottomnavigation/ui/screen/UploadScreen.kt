@@ -90,6 +90,7 @@ fun UploadScreen(
                         defaultViewModel.updateItem()
                         defaultViewModel.newID = null
                         defaultViewModel.newName = null
+                        defaultViewModel.newImageUri = null
                         defaultViewModel.newDescription = null
                         defaultViewModel.newBitmap = null
                         navController.navigate(Screen.HomeScreen.route)
