@@ -33,9 +33,9 @@ class DefaultViewModel: ViewModel() {
 
     fun getBackgroundColor(): Color {
         return if(backgroundColor) {
-            Color.Gray
+            Color(128,128,128)
         }else{
-            Color.White
+            Color(220, 220, 220)
         }
     }
     fun getNotication(): String {
