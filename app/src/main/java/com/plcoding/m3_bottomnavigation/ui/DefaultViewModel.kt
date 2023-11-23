@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
+import com.plcoding.m3_bottomnavigation.data.Product
 
 class DefaultViewModel: ViewModel() {
 
@@ -13,6 +14,17 @@ class DefaultViewModel: ViewModel() {
     var usernameData by mutableStateOf("NewUser")
     var emailData by mutableStateOf("newemail@gmail.com")
     var passwordData by mutableStateOf("secret123")
+    val items by mutableStateOf(arrayListOf(
+        Product(name = "name 1",
+            description = "description 1 \n line 2",
+            photo = null),
+        Product(name = "name 2",
+            description = "description 2 \n line 2",
+            photo = null),
+        Product(name = "name 3",
+            description = "description 3 \n line 2",
+            photo = null)))
+
     fun toggleBackgroundColor() {
         backgroundColor = !backgroundColor
     }
@@ -30,6 +42,10 @@ class DefaultViewModel: ViewModel() {
         passwordData = newPassword
     }
 
+    fun updateItem(product: Product) {
+        items.removeIf { prod -> prod.id == product.id }
+        items.add(product)
+    }
 
     fun getBackgroundColor(): Color {
         return if(backgroundColor) {
@@ -45,5 +61,4 @@ class DefaultViewModel: ViewModel() {
             "uit"
         }
     }
-
 }
