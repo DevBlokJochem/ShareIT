@@ -80,15 +80,12 @@ fun UploadScreen(
                 Text(text = "Opslaan")
             }
 
-            Box {
-                SnackbarHost(
-                    hostState = snackbarHostState,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp)
-                        .align(Alignment.BottomCenter)
-                )
-            }
+            SnackbarHost(
+                hostState = snackbarHostState,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
         }
     }
 }
