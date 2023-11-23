@@ -5,8 +5,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -16,11 +18,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.plcoding.m3_bottomnavigation.BackgroundColor
 import com.plcoding.m3_bottomnavigation.LoadBottomNavigationTheme
 import com.plcoding.m3_bottomnavigation.Screen
+import com.plcoding.m3_bottomnavigation.data.User
+import com.plcoding.m3_bottomnavigation.data.saveConfigToFile
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
 import com.plcoding.m3_bottomnavigation.utils.TextFieldWithHideKeyboardOnImeAction
 
@@ -28,6 +33,9 @@ import com.plcoding.m3_bottomnavigation.utils.TextFieldWithHideKeyboardOnImeActi
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewModel) {
+
+    val configFileName = "config.json"
+    val context  = LocalContext.current
 
     Scaffold(
         bottomBar = { LoadBottomNavigationTheme(navController, Screen.AccountScreen) }
@@ -77,6 +85,24 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
             Text("Wachtwoord: ${"*".repeat((defaultViewModel.passwordData ?: "").toString().length)}")
             TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord") {
                 defaultViewModel.setPassword(it)
+            }
+
+            Button(
+                onClick = {
+                    with(defaultViewModel) {
+                        backgroundColor = false
+                        notifications = false
+                        usernameData = null
+                        emailData = null
+                        passwordData = null
+
+                    }
+                    saveConfigToFile(context, configFileName, User(null, null, null))
+                    navController.navigate(Screen.RegisterScreen.route)
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Verwijder account")
             }
         }
     }

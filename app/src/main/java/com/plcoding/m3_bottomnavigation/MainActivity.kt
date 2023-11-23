@@ -7,7 +7,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import com.plcoding.m3_bottomnavigation.data.User
+import com.plcoding.m3_bottomnavigation.data.readConfigFromFile
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
 
 data class BottomNavigationItem(
@@ -25,6 +31,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val configFileName = "config.json"
+            val context  = LocalContext.current
+            val appConfig by remember { mutableStateOf(readConfigFromFile(context, configFileName) ?: User(null, null, null)) }
+
+            viewModel.usernameData = appConfig.username
+            viewModel.emailData = appConfig.email
+            viewModel.passwordData = appConfig.password
+
             Navigation(viewModel)
         }
     }
