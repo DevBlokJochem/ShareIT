@@ -1,6 +1,7 @@
 package com.plcoding.m3_bottomnavigation.ui.screen
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -46,13 +48,13 @@ fun UploadScreen(
         ) {
 
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Naam: ${defaultViewModel.newName}")
+            Text("Naam: ${defaultViewModel.newName ?: "vul een naam in"}")
             TextFieldWithHideKeyboardOnImeAction("Verander de naam") {
                 defaultViewModel.newName = it
             }
 
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Beschrijving: ${defaultViewModel.newDescription}")
+            Text("Beschrijving: ${defaultViewModel.newDescription ?: "vul een beschrijving in"}")
             TextFieldWithHideKeyboardOnImeAction("Verander de beschrijving") {
                 defaultViewModel.newDescription = it
             }
@@ -78,10 +80,15 @@ fun UploadScreen(
                 Text(text = "Opslaan")
             }
 
-            SnackbarHost(
-                hostState = snackbarHostState,
-                modifier = Modifier.padding(16.dp)
-            )
+            Box {
+                SnackbarHost(
+                    hostState = snackbarHostState,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                        .align(Alignment.BottomCenter)
+                )
+            }
         }
     }
 }
