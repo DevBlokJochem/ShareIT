@@ -25,6 +25,7 @@ const val REGISTERTITLE = "Register"
 const val HOMETITLE = "Home"
 const val UPLOADTITLE = "Toevoegen"
 const val ACCOUNTTITLE = "Account"
+const val PRODUCTTITLE = "Product"
 
 val NAVIGATIONITEMS = listOf(
     BottomNavigationItem(

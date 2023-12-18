@@ -3,6 +3,7 @@ package com.plcoding.m3_bottomnavigation.ui.screen
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -40,7 +41,10 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
                 items(defaultViewModel.items) {
                     Box(modifier = Modifier
                         .width(200.dp) // Set a specific width for each item
-                        .padding(16.dp)) {
+                        .padding(16.dp).clickable {
+                            defaultViewModel.currentID = it.id
+                            navController.navigate(Screen.ProductScreen.route)
+                        }) {
                         ImageCard(bitmap = it.photo, title = it.name)
                     }
                 }

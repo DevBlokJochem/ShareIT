@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
 import com.plcoding.m3_bottomnavigation.ui.screen.AccountScreen
 import com.plcoding.m3_bottomnavigation.ui.screen.HomeScreen
+import com.plcoding.m3_bottomnavigation.ui.screen.ProductScreen
 import com.plcoding.m3_bottomnavigation.ui.screen.RegisterScreen
 import com.plcoding.m3_bottomnavigation.ui.screen.UploadScreen
 
@@ -34,6 +35,9 @@ fun Navigation(defaultViewModel: DefaultViewModel) {
         }
         composable(route = Screen.AccountScreen.route) {
             AccountScreen(navController, defaultViewModel)
+        }
+        composable(route = Screen.ProductScreen.route) {
+            ProductScreen(navController, defaultViewModel)
         }
     }
 }

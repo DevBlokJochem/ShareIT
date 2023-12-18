@@ -33,6 +33,7 @@ class DefaultViewModel: ViewModel() {
             description = "description 3 \n line 2",
             imageUri = null,
             photo = null)))
+    var currentID: UUID? by mutableStateOf(null)
     var newID: UUID? by mutableStateOf(null)
     var newName: String? by mutableStateOf(null)
     var newDescription: String? by mutableStateOf(null)
