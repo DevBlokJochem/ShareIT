@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.plcoding.m3_bottomnavigation.BackgroundColor
 import com.plcoding.m3_bottomnavigation.LoadBottomNavigationTheme
@@ -46,19 +47,41 @@ fun ProductScreen(
     navController: NavController,
     defaultViewModel: DefaultViewModel
 ) {
-
     val context = LocalContext.current
-    if(defaultViewModel.currentID == null || defaultViewModel.items.firstOrNull { item -> item.id == defaultViewModel.currentID } == null) {
+
+    if (defaultViewModel.currentID == null || defaultViewModel.items.firstOrNull { item -> item.id == defaultViewModel.currentID } == null) {
         navController.navigate(Screen.HomeScreen.route)
-    }else{
-        val product = defaultViewModel.items.first { item -> item.id == defaultViewModel.currentID}
+    } else {
+        val product = defaultViewModel.items.first { item -> item.id == defaultViewModel.currentID }
 
         Scaffold(
             bottomBar = { LoadBottomNavigationTheme(navController, Screen.ProductScreen) }
         ) {
-
-            Text(product.name)
-
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                Image(
+                    bitmap = product.photo!!.asImageBitmap(),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = product.name,
+                    color = defaultViewModel.getTextColor(),
+                    fontSize = 20.sp // You can adjust the font size as needed
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = product.description,
+                    color = defaultViewModel.getTextColor(),
+                    fontSize = 16.sp // You can adjust the font size as needed
+                )
+            }
         }
     }
 }
