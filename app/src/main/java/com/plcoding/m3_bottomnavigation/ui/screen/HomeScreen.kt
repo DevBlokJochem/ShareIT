@@ -35,7 +35,7 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
         bottomBar = { LoadBottomNavigationTheme(navController, Screen.HomeScreen) }
     ) { _ ->
         Column(modifier = Modifier.BackgroundColor(defaultViewModel)) {
-            Text("Jouw feed") // Updated text to "jouw feed"
+            Text(text ="Jouw feed",color = defaultViewModel.getTextColor()) // Updated text to "jouw feed"
             LazyRow { // Changed LazyColumn to LazyRow
                 items(defaultViewModel.items) {
                     Box(modifier = Modifier

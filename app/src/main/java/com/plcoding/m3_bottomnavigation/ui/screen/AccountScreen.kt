@@ -77,19 +77,19 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
             }
 
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Gebruikersnaam: ${defaultViewModel.usernameData ?: "Vul een gebruikersnaam in"}")
+            Text(text ="Gebruikersnaam: ${defaultViewModel.usernameData ?: "Vul een gebruikersnaam in"}", color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam") {
                 defaultViewModel.setUsername(it)
             }
 
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Email: ${defaultViewModel.emailData ?: "Vul een email in"}")
+            Text(text ="Email: ${defaultViewModel.emailData ?: "Vul een email in"}",color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander email") {
                 defaultViewModel.setEmail(it)
             }
 
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Wachtwoord: ${"*".repeat((defaultViewModel.passwordData ?: "").toString().length)}")
+            Text(text ="Wachtwoord: ${"*".repeat((defaultViewModel.passwordData ?: "").toString().length)}",color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord") {
                 defaultViewModel.setPassword(it)
             }

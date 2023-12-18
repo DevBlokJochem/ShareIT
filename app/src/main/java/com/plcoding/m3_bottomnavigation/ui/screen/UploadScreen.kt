@@ -64,13 +64,13 @@ fun UploadScreen(
             PickImageFromGallery(defaultViewModel = defaultViewModel)
             
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Naam: ${defaultViewModel.newName ?: "vul een naam in"}")
+            Text(text = "Naam: ${defaultViewModel.newName ?: "vul een naam in"}",color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander de naam") {
                 defaultViewModel.newName = it
             }
 
             Spacer(modifier = Modifier.height(50.dp))
-            Text("Beschrijving: ${defaultViewModel.newDescription ?: "vul een beschrijving in"}")
+            Text(text ="Beschrijving: ${defaultViewModel.newDescription ?: "vul een beschrijving in"}",color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander de beschrijving") {
                 defaultViewModel.newDescription = it
             }
@@ -99,7 +99,7 @@ fun UploadScreen(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                Text(text = "Opslaan")
+                Text(text = "Opslaan",color = defaultViewModel.getTextColor())
             }
 
             SnackbarHost(
