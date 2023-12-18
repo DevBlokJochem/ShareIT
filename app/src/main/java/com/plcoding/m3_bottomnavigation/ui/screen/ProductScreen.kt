@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.plcoding.m3_bottomnavigation.LoadBottomNavigationTheme
 import com.plcoding.m3_bottomnavigation.Screen
+import com.plcoding.m3_bottomnavigation.data.UserManager
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -47,17 +48,21 @@ fun ProductScreen(
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
-                if(defaultViewModel.newBitmap == null) {
+                if(product.photo == null) {
                     Icon(
                         imageVector = Icons.Rounded.AccountCircle,
                         contentDescription = null,
-                        modifier = Modifier.fillMaxWidth().height(200.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
                     )
                 }else{
                     Image(
                         bitmap = product.photo!!.asImageBitmap(),
                         contentDescription = null,
-                        modifier = Modifier.fillMaxWidth().height(200.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
                     )
                 }
 
@@ -68,6 +73,12 @@ fun ProductScreen(
                     fontSize = 20.sp // You can adjust the font size as needed
                 )
                 Spacer(modifier = Modifier.height(8.dp))
+                val user = UserManager.users.firstOrNull { user -> user.email == product.owner.email }
+                if(user != null) {
+                    Text(text = "${user.username} - ${user.email}", color = defaultViewModel.getTextColor())
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = product.description,
                     color = defaultViewModel.getTextColor(),

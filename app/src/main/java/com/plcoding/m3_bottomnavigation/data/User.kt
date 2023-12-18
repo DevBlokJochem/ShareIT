@@ -1,14 +1,23 @@
 package com.plcoding.m3_bottomnavigation.data
 
 import android.content.Context
-import androidx.compose.ui.platform.LocalContext
 import com.google.gson.GsonBuilder
 
 data class User(
-    val username: String?,
-    val email: String?,
-    val password: String?
+    var username: String?,
+    var email: String?,
+    var password: String?
 )
+
+object UserManager {
+
+    val users: ArrayList<User> = arrayListOf(
+        User("User1", "User1@gmail.com", "pass"),
+        User("User2", "User2@gmail.com", "word"),
+        User("User3", "User3@gmail.com", "1234"),
+    )
+
+}
 
 // Functie om configuratiegegevens op te slaan in een bestand
 fun saveConfigToFile(context: Context, fileName: String, config: User) {

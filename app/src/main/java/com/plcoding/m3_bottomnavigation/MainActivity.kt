@@ -1,6 +1,7 @@
 package com.plcoding.m3_bottomnavigation
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -34,6 +35,9 @@ class MainActivity : ComponentActivity() {
             val configFileName = "config.json"
             val context  = LocalContext.current
             val appConfig by remember { mutableStateOf(readConfigFromFile(context, configFileName) ?: User(null, null, null)) }
+
+            viewModel.context = context
+            viewModel.configFileName = configFileName
 
             viewModel.usernameData = appConfig.username
             viewModel.emailData = appConfig.email

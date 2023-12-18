@@ -25,6 +25,7 @@ import com.plcoding.m3_bottomnavigation.BackgroundColor
 import com.plcoding.m3_bottomnavigation.LoadBottomNavigationTheme
 import com.plcoding.m3_bottomnavigation.Screen
 import com.plcoding.m3_bottomnavigation.data.User
+import com.plcoding.m3_bottomnavigation.data.UserManager
 import com.plcoding.m3_bottomnavigation.data.readConfigFromFile
 import com.plcoding.m3_bottomnavigation.data.saveConfigToFile
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
@@ -47,6 +48,9 @@ fun RegisterScreen(
     val appConfig by remember { mutableStateOf(readConfigFromFile(context, configFileName) ?: User(null, null, null)) }
 
     if(!(appConfig.username == null || appConfig.email == null || appConfig.password == null)) {
+        val user = User(appConfig.username, appConfig.email, appConfig.password)
+        UserManager.users.add(user)
+        defaultViewModel.ownUser = user
         navController.navigate(Screen.HomeScreen.route)
     }else{
         Scaffold { _ ->
@@ -81,7 +85,10 @@ fun RegisterScreen(
                                 snackbarHostState.showSnackbar("Je moet alle velden invullen")
                             }
                         }else{
-                            saveConfigToFile(context, configFileName, User(defaultViewModel.usernameData, defaultViewModel.emailData, defaultViewModel.passwordData))
+                            val user = User(defaultViewModel.usernameData, defaultViewModel.emailData, defaultViewModel.passwordData)
+                            UserManager.users.add(user)
+                            defaultViewModel.ownUser = user
+                            saveConfigToFile(context, configFileName, user)
                             navController.navigate(Screen.HomeScreen.route)
                         }
                     },

@@ -26,6 +26,7 @@ import com.plcoding.m3_bottomnavigation.BackgroundColor
 import com.plcoding.m3_bottomnavigation.LoadBottomNavigationTheme
 import com.plcoding.m3_bottomnavigation.Screen
 import com.plcoding.m3_bottomnavigation.data.User
+import com.plcoding.m3_bottomnavigation.data.UserManager
 import com.plcoding.m3_bottomnavigation.data.saveConfigToFile
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
 import com.plcoding.m3_bottomnavigation.utils.TextFieldWithHideKeyboardOnImeAction
@@ -104,6 +105,8 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
                         passwordData = null
 
                     }
+                    UserManager.users.remove(defaultViewModel.ownUser)
+                    defaultViewModel.ownUser = null
                     saveConfigToFile(context, configFileName, User(null, null, null))
                     navController.navigate(Screen.RegisterScreen.route)
                 },
