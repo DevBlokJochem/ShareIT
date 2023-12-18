@@ -50,6 +50,8 @@ fun Modifier.BackgroundColor(viewModel: DefaultViewModel): Modifier {
     return Modifier.background(viewModel.getBackgroundColor()).fillMaxWidth().fillMaxHeight()
 }
 
+
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun LoadBottomNavigationTheme(navController: NavController, selectedScreen: Screen) {

@@ -68,11 +68,20 @@ class DefaultViewModel: ViewModel() {
 
     fun getBackgroundColor(): Color {
         return if(backgroundColor) {
-            Color(128,128,128)
+            Color(50,50,50)
         }else{
             Color(220, 220, 220)
         }
     }
+
+    fun getTextColor(): Color {
+        return if(backgroundColor) {
+            Color(200,200,200)
+        }else{
+            Color(1, 1, 1)
+        }
+    }
+
     fun getNotication(): String {
         return if(notifications) {
             "aan"

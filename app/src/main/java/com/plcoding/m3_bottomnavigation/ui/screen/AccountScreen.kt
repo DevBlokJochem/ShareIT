@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -49,7 +50,13 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
                     }
                     .padding(16.dp)
             ) {
-                Text("Dark mode ", Modifier.weight(1f))
+//                Text("Dark mode ", color=defaultViewModel.getTextColor(), Modifier.weight(1f))
+                Text(
+                    text = "Dark Mode",
+                    color = defaultViewModel.getTextColor(),
+                    modifier = Modifier.weight(1f)
+
+                )
                 Switch(checked = defaultViewModel.backgroundColor, onCheckedChange = {
                     defaultViewModel.toggleBackgroundColor()
                 }, colors = SwitchDefaults.colors(checkedThumbColor = Color.Gray, checkedTrackColor = Color.LightGray))
@@ -63,7 +70,7 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
                     }
                     .padding(16.dp)
             ) {
-                Text("Meldingen ${defaultViewModel.getNotication()}", Modifier.weight(1f))
+                Text(text = "Meldingen ${defaultViewModel.getNotication()}",color = defaultViewModel.getTextColor(), modifier = Modifier.weight(1f))
                 Switch(checked = defaultViewModel.notifications, onCheckedChange = {
                     defaultViewModel.toggleNotifications()
                 }, colors = SwitchDefaults.colors(checkedThumbColor = Color.Gray, checkedTrackColor = Color.LightGray))
