@@ -46,46 +46,49 @@ fun RegisterScreen(
     val context  = LocalContext.current
     val appConfig by remember { mutableStateOf(readConfigFromFile(context, configFileName) ?: User(null, null, null)) }
 
-
-    Scaffold { _ ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .BackgroundColor(defaultViewModel),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("Gebruikersnaam: ${defaultViewModel.usernameData ?: "Vul een gebruikersnaam in"}")
-            TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam") {
-                defaultViewModel.setUsername(it)
-            }
-
-            Spacer(modifier = Modifier.height(50.dp))
-            Text("Email: ${defaultViewModel.emailData ?: "Vul een email in"}")
-            TextFieldWithHideKeyboardOnImeAction("Verander email") {
-                defaultViewModel.setEmail(it)
-            }
-
-            Spacer(modifier = Modifier.height(50.dp))
-            Text("Wachtwoord: ${"*".repeat((defaultViewModel.passwordData ?: "").toString().length)}")
-            TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord") {
-                defaultViewModel.setPassword(it)
-            }
-
-            Button(
-                onClick = {
-                    if (defaultViewModel.usernameData == null || defaultViewModel.emailData == null || defaultViewModel.passwordData == null) {
-                        scope.launch {
-                            snackbarHostState.showSnackbar("Je moet alle velden invullen")
-                        }
-                    }else{
-                        saveConfigToFile(context, configFileName, User(defaultViewModel.usernameData, defaultViewModel.emailData, defaultViewModel.passwordData))
-                        navController.navigate(Screen.LoadingScreen.route)
-                    }
-                },
-                modifier = Modifier.fillMaxWidth()
+    if(!(appConfig.username == null || appConfig.email == null || appConfig.password == null)) {
+        navController.navigate(Screen.HomeScreen.route)
+    }else{
+        Scaffold { _ ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .BackgroundColor(defaultViewModel),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = "Opslaan")
+                Text("Gebruikersnaam: ${defaultViewModel.usernameData ?: "Vul een gebruikersnaam in"}")
+                TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam") {
+                    defaultViewModel.setUsername(it)
+                }
+
+                Spacer(modifier = Modifier.height(50.dp))
+                Text("Email: ${defaultViewModel.emailData ?: "Vul een email in"}")
+                TextFieldWithHideKeyboardOnImeAction("Verander email") {
+                    defaultViewModel.setEmail(it)
+                }
+
+                Spacer(modifier = Modifier.height(50.dp))
+                Text("Wachtwoord: ${"*".repeat((defaultViewModel.passwordData ?: "").toString().length)}")
+                TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord") {
+                    defaultViewModel.setPassword(it)
+                }
+
+                Button(
+                    onClick = {
+                        if (defaultViewModel.usernameData == null || defaultViewModel.emailData == null || defaultViewModel.passwordData == null) {
+                            scope.launch {
+                                snackbarHostState.showSnackbar("Je moet alle velden invullen")
+                            }
+                        }else{
+                            saveConfigToFile(context, configFileName, User(defaultViewModel.usernameData, defaultViewModel.emailData, defaultViewModel.passwordData))
+                            navController.navigate(Screen.HomeScreen.route)
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Opslaan")
+                }
             }
         }
     }

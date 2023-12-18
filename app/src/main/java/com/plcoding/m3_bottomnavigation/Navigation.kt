@@ -12,7 +12,6 @@ import androidx.navigation.compose.rememberNavController
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
 import com.plcoding.m3_bottomnavigation.ui.screen.AccountScreen
 import com.plcoding.m3_bottomnavigation.ui.screen.HomeScreen
-import com.plcoding.m3_bottomnavigation.ui.screen.LoadingScreen
 import com.plcoding.m3_bottomnavigation.ui.screen.RegisterScreen
 import com.plcoding.m3_bottomnavigation.ui.screen.UploadScreen
 
@@ -23,10 +22,7 @@ fun Navigation(defaultViewModel: DefaultViewModel) {
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
 
-    NavHost(navController = navController, startDestination = Screen.LoadingScreen.route) {
-        composable(route = Screen.LoadingScreen.route) {
-            LoadingScreen(navController, defaultViewModel)
-        }
+    NavHost(navController = navController, startDestination = Screen.RegisterScreen.route) {
         composable(route = Screen.RegisterScreen.route) {
             RegisterScreen(navController, defaultViewModel, scope, snackbarHostState)
         }

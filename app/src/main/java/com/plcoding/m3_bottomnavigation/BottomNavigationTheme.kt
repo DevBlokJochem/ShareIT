@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
 
-const val LOADINGTITLE = "Loading"
 const val REGISTERTITLE = "Register"
 const val HOMETITLE = "Home"
 const val UPLOADTITLE = "Toevoegen"
