@@ -1,44 +1,29 @@
 package com.plcoding.m3_bottomnavigation.ui.screen
 
 import android.annotation.SuppressLint
-import android.graphics.ImageDecoder
-import android.os.Build
-import android.provider.MediaStore
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountCircle
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.plcoding.m3_bottomnavigation.BackgroundColor
 import com.plcoding.m3_bottomnavigation.LoadBottomNavigationTheme
 import com.plcoding.m3_bottomnavigation.Screen
 import com.plcoding.m3_bottomnavigation.ui.DefaultViewModel
-import com.plcoding.m3_bottomnavigation.utils.PickImageFromGallery
-import com.plcoding.m3_bottomnavigation.utils.TextFieldWithHideKeyboardOnImeAction
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -62,13 +47,20 @@ fun ProductScreen(
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
-                Image(
-                    bitmap = product.photo!!.asImageBitmap(),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp)
-                )
+                if(defaultViewModel.newBitmap == null) {
+                    Icon(
+                        imageVector = Icons.Rounded.AccountCircle,
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxWidth().height(200.dp)
+                    )
+                }else{
+                    Image(
+                        bitmap = product.photo!!.asImageBitmap(),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxWidth().height(200.dp)
+                    )
+                }
+
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = product.name,
