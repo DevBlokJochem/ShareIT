@@ -68,7 +68,7 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
                                 navController.navigate(Screen.ProductScreen.route)
                             }
                     ) {
-                        ImageCard(bitmap = it.photo, title = it.name)
+                        ImageCard(bitmap = it.photo, title = it.name, modifier = Modifier.background(defaultViewModel.getBackgroundColor()))
                     }
                 }
             }

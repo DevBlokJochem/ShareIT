@@ -88,7 +88,7 @@ fun ImageCard(
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
     ) {
-        Box(modifier = Modifier.height(200.dp)) {
+        Box(modifier = modifier.height(200.dp)) {
             if(bitmap == null) {
                 Icon(
                     imageVector = Icons.Rounded.AccountCircle,
