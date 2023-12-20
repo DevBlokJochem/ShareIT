@@ -55,9 +55,7 @@ fun RegisterScreen(
     }else{
         Scaffold { _ ->
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .BackgroundColor(defaultViewModel),
+                modifier = Modifier.BackgroundColor(defaultViewModel),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {

@@ -55,10 +55,7 @@ fun UploadScreen(
         bottomBar = { LoadBottomNavigationTheme(navController, Screen.UploadScreen) }
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .BackgroundColor(defaultViewModel)
-                .padding(16.dp)
+            modifier = Modifier.BackgroundColor(defaultViewModel)
         ) {
 
             PickImageFromGallery(defaultViewModel = defaultViewModel)

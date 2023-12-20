@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.plcoding.m3_bottomnavigation.BackgroundColor
 import com.plcoding.m3_bottomnavigation.LoadBottomNavigationTheme
 import com.plcoding.m3_bottomnavigation.Screen
 import com.plcoding.m3_bottomnavigation.data.UserManager
@@ -44,9 +45,7 @@ fun ProductScreen(
             bottomBar = { LoadBottomNavigationTheme(navController, Screen.ProductScreen) }
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)
+                modifier = Modifier.BackgroundColor(defaultViewModel)
             ) {
                 if(product.photo == null) {
                     Icon(
