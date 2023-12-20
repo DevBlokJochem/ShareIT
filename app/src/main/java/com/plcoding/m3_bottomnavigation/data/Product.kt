@@ -10,5 +10,6 @@ data class Product(
     var name: String,
     var description: String,
     var imageUri: Uri?,
-    var photo: Bitmap?
+    var photo: Bitmap?,
+    val request: Boolean
 )

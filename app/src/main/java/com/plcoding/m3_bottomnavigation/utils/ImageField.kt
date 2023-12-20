@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountCircle
@@ -56,21 +57,22 @@ fun PickImageFromGallery(defaultViewModel: DefaultViewModel) {
             }
         }
 
-        Button(modifier = Modifier
-            .size(148.dp)
-            .align(Alignment.CenterHorizontally), onClick = { launcher.launch("image/*") }) {
-            if(defaultViewModel.newBitmap == null) {
-                Icon(
-                    imageVector = Icons.Rounded.AccountCircle,
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize()
-                )
-            }else{
-                Image(
-                    bitmap = defaultViewModel.newBitmap!!.asImageBitmap(),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize()
-                )
+        Box(modifier = Modifier.fillMaxWidth().wrapContentSize(Alignment.Center)) {
+            Button(modifier = Modifier
+                .size(148.dp), onClick = { launcher.launch("image/*") }) {
+                if(defaultViewModel.newBitmap == null) {
+                    Icon(
+                        imageVector = Icons.Rounded.AccountCircle,
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }else {
+                    Image(
+                        bitmap = defaultViewModel.newBitmap!!.asImageBitmap(),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
             }
         }
     }
@@ -102,11 +104,19 @@ fun ImageCard(
                     modifier = Modifier.fillMaxSize()
                 )
             }
-            Box(modifier = Modifier.fillMaxSize().background(Brush.verticalGradient(colors = listOf(
-                Color.Transparent,
-                Color.Black
-            ), startY = 300f)))
-            Box(modifier = Modifier.fillMaxSize().padding(12.dp),
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Transparent,
+                            Color.Black
+                        ), startY = 300f
+                    )
+                ))
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(12.dp),
                 contentAlignment = Alignment.BottomStart
             ) {
                 Text(text = title, style = TextStyle(color = Color.White, fontSize = 16.sp))

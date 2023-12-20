@@ -95,6 +95,7 @@ fun UploadScreen(
                         defaultViewModel.newImageUri = null
                         defaultViewModel.newDescription = null
                         defaultViewModel.newBitmap = null
+                        defaultViewModel.newRequest = false
                         navController.navigate(Screen.HomeScreen.route)
                     }
                 },

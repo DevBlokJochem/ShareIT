@@ -47,7 +47,6 @@ class DefaultViewModel: ViewModel() {
     var ownUser: User? = null
 
     var items: ArrayList<Product> = ArrayList()
-    var request: ArrayList<Product> = ArrayList()
 
     var currentID: UUID? by mutableStateOf(null)
     var newID: UUID? by mutableStateOf(null)
@@ -55,15 +54,20 @@ class DefaultViewModel: ViewModel() {
     var newDescription: String? by mutableStateOf(null)
     var newImageUri: Uri? by mutableStateOf(null)
     var newBitmap: Bitmap? by mutableStateOf(null)
+    var newRequest: Boolean? by mutableStateOf(null)
 
     @SuppressLint("UnrememberedMutableState")
     @Composable
     fun SetupItems() {
         val newItems by mutableStateOf(arrayListOf(
-            createUser(user1, "Hamer", "Deze hamer is van zeer goede kwaliteit en kan je bij mij ophalen voor 5 euro per dag.", R.drawable.hamer),
-            createUser(user2, "Ladder", "Een veiligere ladder dan dit kan je niet krijgen! Deze ladder is ook beschikbaar voor verzenden. Ook kan je hem ophalen voor 7 euro per dag.", R.drawable.ladder),
-            createUser(user3, "Makita Boormachine", "Deze Makita boormachine is een absolute must-have voor iedereen die serieus bezig is met klussen. Met zijn krachtige prestaties en duurzame ontwerp is deze boormachine speciaal ontworpen voor professionals die streven naar precisie en efficiëntie. Je kan hem bij mij ophalen voor 20 euro per dag.", R.drawable.boormachine),))
+            createProduct(user1, "Hamer", "Deze hamer is van zeer goede kwaliteit en kan je bij mij ophalen voor 5 euro per dag.", R.drawable.hamer, false),
+            createProduct(user2, "Ladder", "Een veiligere ladder dan dit kan je niet krijgen! Deze ladder is ook beschikbaar voor verzenden. Ook kan je hem ophalen voor 7 euro per dag.", R.drawable.ladder, false),
+            createProduct(user3, "Makita Boormachine", "Deze Makita boormachine is een absolute must-have voor iedereen die serieus bezig is met klussen. Met zijn krachtige prestaties en duurzame ontwerp is deze boormachine speciaal ontworpen voor professionals die streven naar precisie en efficiëntie. Je kan hem bij mij ophalen voor 20 euro per dag.", R.drawable.boormachine, false),
+            createProduct(user = user4, name = "test", description = "test", photo = R.drawable.hamer, true),
+            createProduct(user = user4, name = "test", description = "test", photo = R.drawable.hamer, true)
+        ))
         items = newItems
+
     }
 
     fun toggleBackgroundColor() {
@@ -103,7 +107,8 @@ class DefaultViewModel: ViewModel() {
             newName ?: "no name",
             newDescription ?: "no description",
             newImageUri,
-            newBitmap))
+            newBitmap,
+            newRequest ?: false))
     }
 
     fun getBackgroundColor(): Color {
@@ -132,10 +137,10 @@ class DefaultViewModel: ViewModel() {
 }
 
 @Composable
-fun createUser(user: User, name: String, description: String, photo: Int): Product {
+fun createProduct(user: User, name: String, description: String, photo: Int, requestOrNot: Boolean): Product {
     return Product(UUID.randomUUID(), user, name, description, null, BitmapFactory.decodeResource(
         LocalContext.current.resources,
         photo,
         BitmapFactory.Options()
-    ))
+    ), requestOrNot)
 }

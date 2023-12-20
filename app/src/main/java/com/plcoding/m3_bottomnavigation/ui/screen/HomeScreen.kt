@@ -57,7 +57,7 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
             Text(text = "Verkoop feed", color = defaultViewModel.getTextColor(), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
 
             LazyRow {
-                items(defaultViewModel.items) {
+                items(defaultViewModel.items.filter { item -> !item.request }) {
                     Box(
                         modifier = Modifier
                             .width(200.dp)
@@ -76,6 +76,22 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
 
             // Add your request feed here
             Text(text = "Aanvragen feed", color = defaultViewModel.getTextColor(), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+
+            LazyRow {
+                items(defaultViewModel.items.filter { item -> item.request }) {
+                    Box(
+                        modifier = Modifier
+                            .width(200.dp)
+                            .padding(16.dp)
+                            .clickable {
+                                defaultViewModel.currentID = it.id
+                                navController.navigate(Screen.ProductScreen.route)
+                            }
+                    ) {
+                        ImageCard(bitmap = it.photo, title = it.name, modifier = Modifier.background(defaultViewModel.getBackgroundColor()))
+                    }
+                }
+            }
 
             Spacer(modifier = Modifier.height(4.dp))
             Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
