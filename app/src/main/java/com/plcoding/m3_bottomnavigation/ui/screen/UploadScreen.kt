@@ -6,15 +6,20 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.plcoding.m3_bottomnavigation.BackgroundColor
@@ -45,21 +50,34 @@ fun UploadScreen(
             modifier = Modifier.BackgroundColor(defaultViewModel)
         ) {
 
+            Text(
+                text = "Maak een product",
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier
+                    .wrapContentHeight()
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                color = defaultViewModel.getTextColor()
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
+            Spacer(modifier = Modifier.height(10.dp))
+
             PickImageFromGallery(defaultViewModel = defaultViewModel)
             
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             Text(text = "Naam: ${defaultViewModel.newName ?: "vul een naam in"}",color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander de naam", defaultViewModel) {
                 defaultViewModel.newName = it
             }
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             Text(text ="Beschrijving: ${defaultViewModel.newDescription ?: "vul een beschrijving in"}",color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander de beschrijving", defaultViewModel) {
                 defaultViewModel.newDescription = it
             }
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             Button(
                 onClick = {
                     if(defaultViewModel.newName == null) {

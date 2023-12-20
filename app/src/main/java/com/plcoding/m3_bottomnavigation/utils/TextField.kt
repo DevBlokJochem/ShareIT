@@ -45,12 +45,6 @@ fun TextFieldWithHideKeyboardOnImeAction(label: String, defaultViewModel: Defaul
                 keyboardController?.hide()
                 callback.invoke(text)
             }
-        ),
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = Color.Red, // Kleur van de tekst
-            focusedIndicatorColor = Color.Transparent, // Kleur van de focus indicator
-            unfocusedIndicatorColor = Color.Transparent, // Kleur van de unfocus indicator
-            cursorColor = Color.Green // Kleur van de cursor
         )
     )
 }

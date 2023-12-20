@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.plcoding.m3_bottomnavigation.BackgroundColor
@@ -43,7 +45,19 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
         bottomBar = { LoadBottomNavigationTheme(navController, Screen.AccountScreen) }
     ) { _ ->
         Column(Modifier.BackgroundColor(defaultViewModel)) {
-            Divider()
+            Text(
+                text = "Account",
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier
+                    .wrapContentHeight()
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                color = defaultViewModel.getTextColor()
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
+            Spacer(modifier = Modifier.height(4.dp))
+
             Row(
                 modifier = Modifier
                     .clickable {
@@ -76,20 +90,20 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
                 }, colors = SwitchDefaults.colors(checkedThumbColor = Color.Gray, checkedTrackColor = Color.LightGray))
             }
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             Text(text ="Gebruikersnaam: ${defaultViewModel.usernameData ?: "Vul een gebruikersnaam in"}", color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam", defaultViewModel) {
                 defaultViewModel.setUsername(it)
             }
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             Text(text ="Email: ${defaultViewModel.emailData ?: "Vul een email in"}",color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander email", defaultViewModel) {
 
                  defaultViewModel.setEmail(it)
             }
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             Text(text ="Wachtwoord: ${"*".repeat((defaultViewModel.passwordData ?: "").toString().length)}",color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord", defaultViewModel) {
                 defaultViewModel.setPassword(it)
