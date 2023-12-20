@@ -1,15 +1,13 @@
 package com.plcoding.m3_bottomnavigation.ui.screen
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountCircle
+import androidx.compose.material.icons.rounded.Email
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -47,7 +45,7 @@ fun ProductScreen(
             Column(
                 modifier = Modifier.BackgroundColor(defaultViewModel)
             ) {
-                if(product.photo == null) {
+                if (product.photo == null) {
                     Icon(
                         imageVector = Icons.Rounded.AccountCircle,
                         contentDescription = null,
@@ -55,7 +53,7 @@ fun ProductScreen(
                             .fillMaxWidth()
                             .height(200.dp)
                     )
-                }else{
+                } else {
                     Image(
                         bitmap = product.photo!!.asImageBitmap(),
                         contentDescription = null,
@@ -72,9 +70,32 @@ fun ProductScreen(
                     fontSize = 20.sp // You can adjust the font size as needed
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                val user = UserManager.users.firstOrNull { user -> user.email == product.owner.email }
-                if(user != null) {
-                    Text(text = "${user.username} - ${user.email}", color = defaultViewModel.getTextColor())
+
+                // Adjusted layout to place the username and email to the left of the button
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(0.dp, 8.dp)
+                ) {
+                    val user = UserManager.users.firstOrNull { user -> user.email == product.owner.email }
+                    if (user != null) {
+                        Text(
+                            text = "${user.username} - ${user.email}",
+                            color = defaultViewModel.getTextColor()
+                        )
+                        Spacer(modifier = Modifier.width(16.dp))
+                    }
+                    Icon(
+                        imageVector = Icons.Rounded.Email,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(30.dp).clickable {
+                                Toast.makeText(context, "Chat feature coming soon!", Toast.LENGTH_SHORT).show()
+                            }
+                    )
+                    // Chat button with onClickListener
+
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -87,3 +108,4 @@ fun ProductScreen(
         }
     }
 }
+

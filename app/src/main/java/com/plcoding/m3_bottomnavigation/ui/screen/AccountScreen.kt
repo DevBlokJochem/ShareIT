@@ -86,7 +86,8 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
             Spacer(modifier = Modifier.height(50.dp))
             Text(text ="Email: ${defaultViewModel.emailData ?: "Vul een email in"}",color = defaultViewModel.getTextColor())
             TextFieldWithHideKeyboardOnImeAction("Verander email") {
-                defaultViewModel.setEmail(it)
+
+                 defaultViewModel.setEmail(it)
             }
 
             Spacer(modifier = Modifier.height(50.dp))
