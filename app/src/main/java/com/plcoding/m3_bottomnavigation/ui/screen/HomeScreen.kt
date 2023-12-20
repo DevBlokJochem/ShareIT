@@ -21,7 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
@@ -55,7 +54,7 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
             Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
             Spacer(modifier = Modifier.height(4.dp))
 
-            Text(text = "Jouw feed", color = defaultViewModel.getTextColor(), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+            Text(text = "Verkoop feed", color = defaultViewModel.getTextColor(), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
 
             LazyRow {
                 items(defaultViewModel.items) {
@@ -72,6 +71,14 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
                     }
                 }
             }
+
+            Spacer(modifier = Modifier.height(8.dp)) // Adjust spacing as needed
+
+            // Add your request feed here
+            Text(text = "aanvragen feed", color = defaultViewModel.getTextColor(), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+
+            Spacer(modifier = Modifier.height(4.dp))
+            Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
         }
     }
 }
