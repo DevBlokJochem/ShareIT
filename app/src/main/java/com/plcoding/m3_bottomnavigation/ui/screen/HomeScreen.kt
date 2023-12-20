@@ -54,7 +54,7 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
             Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
             Spacer(modifier = Modifier.height(4.dp))
 
-            Text(text = "Verkoop feed", color = defaultViewModel.getTextColor(), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+            Text(text = "Verhuren feed", color = defaultViewModel.getTextColor(), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
 
             LazyRow {
                 items(defaultViewModel.items.filter { item -> !item.request }) {

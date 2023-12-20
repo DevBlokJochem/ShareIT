@@ -105,6 +105,8 @@ fun UploadScreen(
                 Text(text = "Opslaan",color = defaultViewModel.getTextColor())
             }
 
+            
+
             SnackbarHost(
                 hostState = snackbarHostState,
                 modifier = Modifier
