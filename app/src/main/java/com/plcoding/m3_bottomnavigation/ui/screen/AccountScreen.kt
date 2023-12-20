@@ -51,7 +51,6 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
                     }
                     .padding(16.dp)
             ) {
-//                Text("Dark mode ", color=defaultViewModel.getTextColor(), Modifier.weight(1f))
                 Text(
                     text = "Dark Mode",
                     color = defaultViewModel.getTextColor(),
@@ -79,20 +78,20 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
 
             Spacer(modifier = Modifier.height(50.dp))
             Text(text ="Gebruikersnaam: ${defaultViewModel.usernameData ?: "Vul een gebruikersnaam in"}", color = defaultViewModel.getTextColor())
-            TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam") {
+            TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam", defaultViewModel) {
                 defaultViewModel.setUsername(it)
             }
 
             Spacer(modifier = Modifier.height(50.dp))
             Text(text ="Email: ${defaultViewModel.emailData ?: "Vul een email in"}",color = defaultViewModel.getTextColor())
-            TextFieldWithHideKeyboardOnImeAction("Verander email") {
+            TextFieldWithHideKeyboardOnImeAction("Verander email", defaultViewModel) {
 
                  defaultViewModel.setEmail(it)
             }
 
             Spacer(modifier = Modifier.height(50.dp))
             Text(text ="Wachtwoord: ${"*".repeat((defaultViewModel.passwordData ?: "").toString().length)}",color = defaultViewModel.getTextColor())
-            TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord") {
+            TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord", defaultViewModel) {
                 defaultViewModel.setPassword(it)
             }
 

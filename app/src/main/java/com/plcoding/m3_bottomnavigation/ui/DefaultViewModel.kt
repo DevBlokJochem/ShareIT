@@ -3,7 +3,9 @@ package com.plcoding.m3_bottomnavigation.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -20,6 +22,7 @@ import java.util.UUID
 @SuppressLint("MutableCollectionMutableState")
 class DefaultViewModel: ViewModel() {
 
+    @SuppressLint("StaticFieldLeak")
     lateinit var context: Context
     lateinit var configFileName: String
 
@@ -35,31 +38,23 @@ class DefaultViewModel: ViewModel() {
 
     var ownUser: User? = null
 
-    val items by mutableStateOf(arrayListOf(
-        Product(id = UUID.randomUUID(),
-            owner = user1,
-            name = "name 1",
-            description = "description 1 \n line 2",
-            imageUri = null,
-            photo = Bitmap.createBitmap(R.drawable.)),
-        Product(id = UUID.randomUUID(),
-            owner = user2,
-            name = "name 2",
-            description = "description 2 \n line 2",
-            imageUri = null,
-            photo = null),
-        Product(id = UUID.randomUUID(),
-            owner = user3,
-            name = "name 3",
-            description = "description 3 \n line 2",
-            imageUri = null,
-            photo = null)))
+    var items: ArrayList<Product> = ArrayList()
     var currentID: UUID? by mutableStateOf(null)
     var newID: UUID? by mutableStateOf(null)
     var newName: String? by mutableStateOf(null)
     var newDescription: String? by mutableStateOf(null)
     var newImageUri: Uri? by mutableStateOf(null)
     var newBitmap: Bitmap? by mutableStateOf(null)
+
+    @SuppressLint("UnrememberedMutableState")
+    @Composable
+    fun SetupItems() {
+        val newItems by mutableStateOf(arrayListOf(
+            createUser(user1, "name 1", "description 1 \n line 2", R.drawable.test),
+            createUser(user2, "name 1", "description 1 \n line 2", R.drawable.test),
+            createUser(user3, "name 1", "description 1 \n line 2", R.drawable.test),))
+        items = newItems
+    }
 
     fun toggleBackgroundColor() {
         backgroundColor = !backgroundColor
@@ -124,4 +119,13 @@ class DefaultViewModel: ViewModel() {
             "uit"
         }
     }
+}
+
+@Composable
+fun createUser(user: User, name: String, description: String, photo: Int): Product {
+    return Product(UUID.randomUUID(), user, name, description, null, BitmapFactory.decodeResource(
+        LocalContext.current.resources,
+        photo,
+        BitmapFactory.Options()
+    ))
 }

@@ -49,13 +49,13 @@ fun UploadScreen(
             
             Spacer(modifier = Modifier.height(50.dp))
             Text(text = "Naam: ${defaultViewModel.newName ?: "vul een naam in"}",color = defaultViewModel.getTextColor())
-            TextFieldWithHideKeyboardOnImeAction("Verander de naam") {
+            TextFieldWithHideKeyboardOnImeAction("Verander de naam", defaultViewModel) {
                 defaultViewModel.newName = it
             }
 
             Spacer(modifier = Modifier.height(50.dp))
             Text(text ="Beschrijving: ${defaultViewModel.newDescription ?: "vul een beschrijving in"}",color = defaultViewModel.getTextColor())
-            TextFieldWithHideKeyboardOnImeAction("Verander de beschrijving") {
+            TextFieldWithHideKeyboardOnImeAction("Verander de beschrijving", defaultViewModel) {
                 defaultViewModel.newDescription = it
             }
 

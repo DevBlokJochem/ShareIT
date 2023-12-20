@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
@@ -22,7 +21,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.plcoding.m3_bottomnavigation.BackgroundColor
-import com.plcoding.m3_bottomnavigation.LoadBottomNavigationTheme
 import com.plcoding.m3_bottomnavigation.Screen
 import com.plcoding.m3_bottomnavigation.data.User
 import com.plcoding.m3_bottomnavigation.data.UserManager
@@ -43,6 +41,8 @@ fun RegisterScreen(
     snackbarHostState: SnackbarHostState
 ) {
 
+    defaultViewModel.SetupItems()
+
     val configFileName = "config.json"
     val context  = LocalContext.current
     val appConfig by remember { mutableStateOf(readConfigFromFile(context, configFileName) ?: User(null, null, null)) }
@@ -60,19 +60,19 @@ fun RegisterScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text("Gebruikersnaam: ${defaultViewModel.usernameData ?: "Vul een gebruikersnaam in"}")
-                TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam") {
+                TextFieldWithHideKeyboardOnImeAction("Verander gebruikersnaam", defaultViewModel) {
                     defaultViewModel.setUsername(it)
                 }
 
                 Spacer(modifier = Modifier.height(50.dp))
                 Text("Email: ${defaultViewModel.emailData ?: "Vul een email in"}")
-                TextFieldWithHideKeyboardOnImeAction("Verander email") {
+                TextFieldWithHideKeyboardOnImeAction("Verander email", defaultViewModel) {
                     defaultViewModel.setEmail(it)
                 }
 
                 Spacer(modifier = Modifier.height(50.dp))
                 Text("Wachtwoord: ${"*".repeat((defaultViewModel.passwordData ?: "").toString().length)}")
-                TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord") {
+                TextFieldWithHideKeyboardOnImeAction("Verander wachtwoord", defaultViewModel) {
                     defaultViewModel.setPassword(it)
                 }
 
