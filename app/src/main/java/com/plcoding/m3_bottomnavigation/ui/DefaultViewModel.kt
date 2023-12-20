@@ -47,6 +47,8 @@ class DefaultViewModel: ViewModel() {
     var ownUser: User? = null
 
     var items: ArrayList<Product> = ArrayList()
+    var request: ArrayList<Product> = ArrayList()
+
     var currentID: UUID? by mutableStateOf(null)
     var newID: UUID? by mutableStateOf(null)
     var newName: String? by mutableStateOf(null)

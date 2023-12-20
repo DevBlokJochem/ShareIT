@@ -75,7 +75,7 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
             Spacer(modifier = Modifier.height(8.dp)) // Adjust spacing as needed
 
             // Add your request feed here
-            Text(text = "aanvragen feed", color = defaultViewModel.getTextColor(), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+            Text(text = "Aanvragen feed", color = defaultViewModel.getTextColor(), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
 
             Spacer(modifier = Modifier.height(4.dp))
             Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
