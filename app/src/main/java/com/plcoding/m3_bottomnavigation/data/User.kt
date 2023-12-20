@@ -12,9 +12,16 @@ data class User(
 object UserManager {
 
     val users: ArrayList<User> = arrayListOf(
-        User("User1", "User1@gmail.com", "pass"),
-        User("User2", "User2@gmail.com", "word"),
-        User("User3", "User3@gmail.com", "1234"),
+        User("Piet Jansen", "Piet.Jansen@gmail.com", "wachtwoord123"),
+        User("Anna de Vries", "Anna.deVries@gmail.com", "123456word"),
+        User("Eva Bakker", "Eva.Bakker@gmail.com", "geheim987"),
+        User("Jan van der Laan", "Jan.vanderLaan@gmail.com", "welkom456"),
+        User("Lotte Visser", "Lotte.Visser@gmail.com", "hallo123xyz"),
+        User("Tom de Boer", "Tom.deBoer@gmail.com", "qwerty789"),
+        User("Sophie Molenaar", "Sophie.Molenaar@gmail.com", "test123abc"),
+        User("Jasper Mulder", "Jasper.Mulder@gmail.com", "password456def"),
+        User("Emma van Dijk", "Emma.vanDijk@gmail.com", "letmein789"),
+        User("Luuk Hoekstra", "Luuk.Hoekstra@gmail.com", "admin123xyz")
     )
 
 }

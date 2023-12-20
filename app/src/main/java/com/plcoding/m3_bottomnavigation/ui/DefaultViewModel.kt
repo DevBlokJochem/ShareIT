@@ -35,6 +35,14 @@ class DefaultViewModel: ViewModel() {
     val user1 = UserManager.users[0]
     val user2 = UserManager.users[1]
     val user3 = UserManager.users[2]
+    val user4 = UserManager.users[3]
+    val user5 = UserManager.users[4]
+    val user6 = UserManager.users[5]
+    val user7 = UserManager.users[6]
+    val user8 = UserManager.users[7]
+    val user9 = UserManager.users[8]
+    val user10 = UserManager.users[9]
+
 
     var ownUser: User? = null
 
@@ -50,9 +58,9 @@ class DefaultViewModel: ViewModel() {
     @Composable
     fun SetupItems() {
         val newItems by mutableStateOf(arrayListOf(
-            createUser(user1, "name 1", "description 1 \n line 2", R.drawable.test),
-            createUser(user2, "name 1", "description 1 \n line 2", R.drawable.test),
-            createUser(user3, "name 1", "description 1 \n line 2", R.drawable.test),))
+            createUser(user1, "Hamer", "Deze hamer is van zeer goede kwaliteit en kan je bij mij ophalen voor 5 euro per dag.", R.drawable.hamer),
+            createUser(user2, "Ladder", "Een veiligere ladder dan dit kan je niet krijgen! Deze ladder is ook beschikbaar voor verzenden. Ook kan je hem ophalen voor 7 euro per dag.", R.drawable.ladder),
+            createUser(user3, "Makita Boormachine", "Deze Makita boormachine is een absolute must-have voor iedereen die serieus bezig is met klussen. Met zijn krachtige prestaties en duurzame ontwerp is deze boormachine speciaal ontworpen voor professionals die streven naar precisie en efficiëntie. Je kan hem bij mij ophalen voor 20 euro per dag.", R.drawable.boormachine),))
         items = newItems
     }
 
