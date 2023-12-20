@@ -47,12 +47,13 @@ fun HomeScreen(navController: NavController, defaultViewModel: DefaultViewModel)
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier
                     .wrapContentHeight()
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                textAlign = TextAlign.Center
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                color = defaultViewModel.getTextColor()
             )
             Spacer(modifier = Modifier.height(4.dp))
             Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(text = "Jouw feed", color = defaultViewModel.getTextColor())
 

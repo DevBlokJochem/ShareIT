@@ -66,6 +66,7 @@ fun PickImageFromGallery(defaultViewModel: DefaultViewModel) {
                     modifier = Modifier.fillMaxSize()
                 )
             }else{
+                println(defaultViewModel.newBitmap!!.asImageBitmap())
                 Image(
                     bitmap = defaultViewModel.newBitmap!!.asImageBitmap(),
                     contentDescription = null,
