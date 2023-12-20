@@ -10,6 +10,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
+import com.plcoding.m3_bottomnavigation.R
 import com.plcoding.m3_bottomnavigation.data.Product
 import com.plcoding.m3_bottomnavigation.data.User
 import com.plcoding.m3_bottomnavigation.data.UserManager
@@ -40,7 +41,7 @@ class DefaultViewModel: ViewModel() {
             name = "name 1",
             description = "description 1 \n line 2",
             imageUri = null,
-            photo = null),
+            photo = Bitmap.createBitmap(R.drawable.)),
         Product(id = UUID.randomUUID(),
             owner = user2,
             name = "name 2",
