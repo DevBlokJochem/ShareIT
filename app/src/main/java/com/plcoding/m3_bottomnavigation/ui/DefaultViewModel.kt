@@ -63,8 +63,8 @@ class DefaultViewModel: ViewModel() {
             createProduct(user1, "Hamer", "Deze hamer is van zeer goede kwaliteit en kan je bij mij ophalen voor 5 euro per dag.", R.drawable.hamer, false),
             createProduct(user2, "Ladder", "Een veiligere ladder dan dit kan je niet krijgen! Deze ladder is ook beschikbaar voor verzenden. Ook kan je hem ophalen voor 7 euro per dag.", R.drawable.ladder, false),
             createProduct(user3, "Makita Boormachine", "Deze Makita boormachine is een absolute must-have voor iedereen die serieus bezig is met klussen. Met zijn krachtige prestaties en duurzame ontwerp is deze boormachine speciaal ontworpen voor professionals die streven naar precisie en efficiëntie. Je kan hem bij mij ophalen voor 20 euro per dag.", R.drawable.boormachine, false),
-            createProduct(user = user4, name = "test", description = "test", photo = R.drawable.hamer, true),
-            createProduct(user = user4, name = "test", description = "test", photo = R.drawable.hamer, true)
+            createProduct(user = user4, name = "Cirkelzaag", description = "Ik heb een cirkelzaag nodig om wat hout te snijden. Graag niet te duur maar wel van kwaliteit. Ik zal er voor zichtig mee om gaan.", photo = R.drawable.cirkelzaag, true),
+            createProduct(user = user5, name = "Aanhanger", description = "Ik heb een aanhanger nodig om wat palen te verplaatsen. Het zal een dag duren. Je kan me bereiken via mijn email adres.", photo = R.drawable.aanhanger, true)
         ))
         items = newItems
 
