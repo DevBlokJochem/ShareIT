@@ -165,9 +165,10 @@ fun AccountScreen(navController: NavController, defaultViewModel: DefaultViewMod
                                 usernameData = null
                                 emailData = null
                                 passwordData = null
+                                ownUser = null
+                                SetupItems()
                             }
                             UserManager.users.remove(defaultViewModel.ownUser)
-                            defaultViewModel.ownUser = null
                             saveConfigToFile(context, configFileName, User(null, null, null))
                             navController.navigate(Screen.RegisterScreen.route)
                         },
