@@ -1,6 +1,7 @@
 package com.plcoding.m3_bottomnavigation.ui.screen
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -36,11 +37,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun RegisterScreen(
     navController: NavController,
-    defaultViewModel: DefaultViewModel,
-    scope: CoroutineScope,
-    snackbarHostState: SnackbarHostState
+    defaultViewModel: DefaultViewModel
 ) {
-
     defaultViewModel.SetupItems()
 
     val configFileName = "config.json"
@@ -79,9 +77,9 @@ fun RegisterScreen(
                 Button(
                     onClick = {
                         if (defaultViewModel.usernameData == null || defaultViewModel.emailData == null || defaultViewModel.passwordData == null) {
-                            scope.launch {
-                                snackbarHostState.showSnackbar("Je moet alle velden invullen")
-                            }
+
+                            Toast.makeText(context, "Je moet alle velden invullen", Toast.LENGTH_SHORT).show()
+
                         }else{
                             val user = User(defaultViewModel.usernameData, defaultViewModel.emailData, defaultViewModel.passwordData)
                             UserManager.users.add(user)

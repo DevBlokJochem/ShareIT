@@ -20,18 +20,16 @@ import com.plcoding.m3_bottomnavigation.ui.screen.UploadScreen
 @Composable
 fun Navigation(defaultViewModel: DefaultViewModel) {
     val navController = rememberNavController()
-    val scope = rememberCoroutineScope()
-    val snackbarHostState = remember { SnackbarHostState() }
 
     NavHost(navController = navController, startDestination = Screen.RegisterScreen.route) {
         composable(route = Screen.RegisterScreen.route) {
-            RegisterScreen(navController, defaultViewModel, scope, snackbarHostState)
+            RegisterScreen(navController, defaultViewModel)
         }
         composable(route = Screen.HomeScreen.route) {
             HomeScreen(navController, defaultViewModel)
         }
         composable(route = Screen.UploadScreen.route) {
-            UploadScreen(navController, defaultViewModel, scope, snackbarHostState)
+            UploadScreen(navController, defaultViewModel)
         }
         composable(route = Screen.AccountScreen.route) {
             AccountScreen(navController, defaultViewModel)
